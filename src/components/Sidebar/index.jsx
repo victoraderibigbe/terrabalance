@@ -62,7 +62,9 @@ const Sidebar = () => {
       >
         <div className="p-5">
           <div className="flex items-center justify-between mb-3">
-            <h4 className="text-primaryGreen">Browse Terra Balance</h4>
+            <h4 className="text-primaryGreen dark:text-secondaryGreen">
+              Browse Terra Balance
+            </h4>
             <MenuToggle />
           </div>
           <div>

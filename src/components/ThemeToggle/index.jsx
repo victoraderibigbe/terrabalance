@@ -16,9 +16,9 @@ const ThemeToggle = () => {
   return (
     <button onClick={handleToggle}>
       {theme === "light" ? (
-        <CiDark className="text-3xl" />
-      ) : (
         <CiLight className="text-3xl" />
+      ) : (
+        <CiDark className="text-3xl" />
       )}
     </button>
   );

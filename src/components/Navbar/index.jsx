@@ -36,7 +36,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="hidden lg:flex">
-          <button className="h-16 px-5 flex items-center gap-2 border-2 text-primaryGreen border-primaryGreen hover:border-secondaryGreen hover:text-secondaryGreen rounded-full text-xl transition">
+          <button className="h-16 px-5 flex items-center gap-2 border-2 text-primaryGreen dark:text-secondaryGreen border-primaryGreen dark:border-secondaryGreen hover:border-secondaryGreen dark:hover:border-primaryGreen hover:text-secondaryGreen dark:hover:text-primaryGreen rounded-full text-xl transition">
             <BiCategory className="text-2xl" /> Categories
           </button>
         </div>
