@@ -17,10 +17,17 @@
   --font-merriweather: "Merriweather", serif;
 }
 
+.dark {
+  --background: #171717;
+  --foreground: #ffffff;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: var(--font-roboto);
+  max-width: 1500px;
+  margin: auto;
 }
 
 h1,
