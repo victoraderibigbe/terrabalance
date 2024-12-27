@@ -5,21 +5,43 @@ import { CiSearch } from "react-icons/ci";
 import { CiLocationOn } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
 import { CiUser } from "react-icons/ci";
-import { BiCategory } from "react-icons/bi";
 import { MdExpandMore } from "react-icons/md";
 import ThemeToggle from "../ThemeToggle";
 import MenuToggle from "../MenuToggle";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import CategoriesDropdown from "../CategoriesDropdown";
+import { categories } from "@/data/categories";
+import Link from "next/link";
 
 const Navbar = () => {
   const [openSearch, setOpenSearch] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const handleClickOutside = (e) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      setOpenDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    if (openDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openDropdown]);
 
   const handleOpenSearch = () => {
     setOpenSearch(!openSearch);
   };
 
   return (
-    <div className="p-3 border-b border-neutralGray md:p-5">
+    <div className="p-3 border-b border-neutralGray md:p-5 bg-background fixed w-full z-50">
       <div className="flex justify-between items-center gap-10">
         <div className="flex items-center gap-2 lg:gap-5">
           <MenuToggle />
@@ -35,10 +57,29 @@ const Navbar = () => {
             </p>
           </div>
         </div>
-        <div className="hidden lg:flex">
-          <button className="h-16 px-5 flex items-center gap-2 border-2 text-primaryGreen dark:text-secondaryGreen border-primaryGreen dark:border-secondaryGreen hover:border-secondaryGreen dark:hover:border-primaryGreen hover:text-secondaryGreen dark:hover:text-primaryGreen rounded-full text-xl transition">
-            <BiCategory className="text-2xl" /> Categories
-          </button>
+        <div className="hidden lg:flex" ref={dropdownRef}>
+          <CategoriesDropdown
+            openDropdown={openDropdown}
+            onToggle={() => setOpenDropdown(!openDropdown)}
+          >
+            <ul className="grid grid-cols-3 gap-3 items-start text-xl text-foreground leading-loose">
+              {categories.map((category, index) => (
+                <li key={index}>
+                  <span className="font-bold mb-2">{category.title}</span>
+                  <ul>
+                    {category.items.map((item, index) => (
+                      <li
+                        key={index}
+                        className="text-gray-600 dark:text-gray-400"
+                      >
+                        <Link href={"#"}>{item}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </CategoriesDropdown>
         </div>
         <div className="md:flex justify-start gap-2 px-5 h-16 items-center border border-neutralGray rounded-full hidden flex-1">
           <CiSearch className="text-3xl" />
@@ -63,7 +104,12 @@ const Navbar = () => {
           <CiSearch className="text-3xl md:hidden" onClick={handleOpenSearch} />
           <CiLocationOn className="text-3xl" />
           <CiUser className="text-3xl hidden md:block" />
-          <CiShoppingCart className="text-3xl" />
+          <div className="relative">
+            <CiShoppingCart className="text-3xl" />
+            <div className="p-2 size-5 rounded-full bg-red-500 absolute top-[-5px] right-[-5px] flex items-center justify-center text-sm text-neutralWhite font-bold">
+              2
+            </div>
+          </div>
         </div>
       </div>
       {openSearch && (

@@ -56,7 +56,7 @@ const Sidebar = () => {
       ></div>
       <div
         ref={sidebarRef}
-        className={`fixed top-0 left-0 h-full w-4/5 md:w-full max-w-xs md:max-w-md lg:max-w-lg bg-white dark:bg-background shadow-lg transform transition-transform ${
+        className={`fixed top-0 left-0 h-full w-4/5 md:w-full max-w-xs md:max-w-md lg:max-w-lg bg-background shadow-lg transform transition-transform z-[99] ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
