@@ -65,10 +65,10 @@ h6 {
   }
 
   p {
-    @apply my-3 text-sm font-medium leading-normal tracking-wide md:text-xl md:my-5;
+    @apply my-3 text-base font-medium leading-normal tracking-wide md:text-lg lg:text-xl md:my-5;
   }
 
   a {
-    @apply text-sm font-medium transition md:text-xl hover:underline hover:underline-offset-4;
+    @apply text-base font-medium transition md:text-lg lg:text-xl hover:underline hover:underline-offset-4;
   }
 }

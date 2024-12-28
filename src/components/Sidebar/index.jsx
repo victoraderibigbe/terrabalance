@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import MenuToggle from "../MenuToggle";
 import DropdownItem from "../DropdownItem";
 import { sidebarData } from "@/data/sidebarData";
+import Link from "next/link";
 
 const Sidebar = () => {
   const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);
@@ -46,6 +47,10 @@ const Sidebar = () => {
     setOpenSubDropdown((prev) => (prev === index ? null : index));
   };
 
+  const filteredSidebarData = sidebarData.filter(
+    (data) => data.title !== "Categories"
+  );
+
   return (
     <>
       <div
@@ -56,7 +61,7 @@ const Sidebar = () => {
       ></div>
       <div
         ref={sidebarRef}
-        className={`fixed top-0 left-0 h-full w-4/5 md:w-full max-w-xs md:max-w-md lg:max-w-lg bg-background shadow-lg transform transition-transform z-[99] ${
+        className={`fixed top-0 left-0 h-full w-4/5 md:w-full max-w-xs md:max-w-md lg:max-w-lg bg-background shadow-lg transform transition-transform z-[99] overflow-auto ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -67,7 +72,7 @@ const Sidebar = () => {
             </h4>
             <MenuToggle />
           </div>
-          <div>
+          <div className="text-base md:text-lg lg:text-xl block lg:hidden">
             {sidebarData.map((mainItem, index) => (
               <DropdownItem
                 key={index}
@@ -86,7 +91,36 @@ const Sidebar = () => {
                       <ul className="border p-2 rounded-md">
                         {subItem.items.map((item, idx) => (
                           <li key={idx} className="mb-2">
-                            {item}
+                            <Link href={"#"}>{item}</Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </DropdownItem>
+                  ))}
+                </div>
+              </DropdownItem>
+            ))}
+          </div>
+          <div className="text-base md:text-lg lg:text-xl hidden lg:block">
+            {filteredSidebarData.map((mainItem, index) => (
+              <DropdownItem
+                key={index}
+                title={mainItem.title}
+                isOpen={openMainDropdown === index}
+                onToggle={() => handleMainToggle(index)}
+              >
+                <div className="border p-2 rounded-md">
+                  {mainItem.content.map((subItem, subIndex) => (
+                    <DropdownItem
+                      key={subIndex}
+                      title={subItem.title}
+                      isOpen={openSubDropdown === subIndex}
+                      onToggle={() => handleSubToggle(subIndex)}
+                    >
+                      <ul className="border p-2 rounded-md">
+                        {subItem.items.map((item, idx) => (
+                          <li key={idx} className="mb-2">
+                            <Link href={"#"}>{item}</Link>
                           </li>
                         ))}
                       </ul>

@@ -17,9 +17,9 @@ const merriweather = Merriweather({
 });
 
 export const metadata = {
-  title: "Terra Balance",
+  title: "Terra Balance Enterprises",
   description:
-    "Empower African Smallholder Farmers Through Cutting-edge Technology",
+    "Shop our farm products and services, we are always available for your order.",
 };
 
 export default function RootLayout({ children }) {
