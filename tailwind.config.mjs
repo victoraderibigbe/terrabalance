@@ -20,7 +20,7 @@ const config = {
         secondaryBrown: "var(--secondary-brown)",
         accentYellow: "var(--accent-yellow)",
         accentBlue: "var(--accent-blue)",
-        neutralWhite: "var(--neutral-white)",
+        neutralLight: "var(--neutral-light)",
         neutralGray: "var(--neutral-gray)",
       },
     },

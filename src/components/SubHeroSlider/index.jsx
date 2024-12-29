@@ -1,15 +1,14 @@
 import { Carousel } from "flowbite-react";
-import HeroSlide from "../HeroSlide";
+import SubHeroSlide from "../SubHeroSlide";
 
-const HeroSlider = ({ data }) => {
+const SubHeroSlider = ({ data }) => {
   return (
-    <div className="h-96 md:h-[90vh]">
+    <div className="h-52">
       <Carousel>
         {data.map((each) => (
-          <HeroSlide
+          <SubHeroSlide
             key={each.title}
             title={each.title}
-            subtitle={each.subtitle}
             image={each.image}
             route={each.route}
           />
@@ -19,4 +18,4 @@ const HeroSlider = ({ data }) => {
   );
 };
 
-export default HeroSlider;
+export default SubHeroSlider;
