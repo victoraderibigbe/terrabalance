@@ -1,31 +1,25 @@
 import HeroSlider from "@/components/HeroSlider";
-import meat from "../../public/images/meat-bg.webp";
-import fruits from "../../public/images/fruits-bg.webp";
-import vegetables from "../../public/images/vegetables-bg.webp";
-import beverages from "../../public/images/beverages.webp";
-import diaryEggs from "../../public/images/dairy-eggs.webp";
-import grains from "../../public/images/grains.webp";
 import SubHeroSlider from "@/components/SubHeroSlider";
-import SubHeroSlide from "@/components/SubHeroSlide";
+import ProductCard from "@/components/ProductCard";
 
 const Home = () => {
   const heroData = [
     {
       title: "Discover the Flavors",
       subtitle: "Our delectable meats, fruits, and vegetables",
-      image: meat,
+      image: "/images/meat-bg.webp",
       route: "#",
     },
     {
       title: "Healthy & Delicious",
       subtitle: "At Delicious Delights, we prioritize your health",
-      image: fruits,
+      image: "/images/fruits-bg.webp",
       route: "#",
     },
     {
       title: "Homemade & Easy",
       subtitle: "We make it easy for you to enjoy our meals",
-      image: vegetables,
+      image: "/images/vegetables-bg.webp",
       route: "#",
     },
   ];
@@ -34,19 +28,19 @@ const Home = () => {
     {
       title: "Refreshing Beverages",
       subtitle: "Stay refreshed with our range of beverages",
-      image: beverages,
+      image: "/images/beverage.webp",
       route: "#",
     },
     {
       title: "Dairy & Eggs",
       subtitle: "Get your daily dose of dairy and eggs",
-      image: diaryEggs,
+      image: "/images/milk.webp",
       route: "#",
     },
     {
       title: "Grains & Cereals",
       subtitle: "Enjoy a variety of grains and cereals",
-      image: grains,
+      image: "/images/grain.webp",
       route: "#",
     },
   ];
@@ -57,10 +51,10 @@ const Home = () => {
       <div className="px-5 py-10 block md:hidden">
         <SubHeroSlider data={subHeroData} />
       </div>
-      <div className="hidden md:flex items-center justify-around p-16 gap-10">
+      <div className="hidden md:flex items-center justify-center p-16 gap-5">
         {subHeroData.map((each) => (
-          <div key={each.title} className="h-56 rounded-xl max-w-md w-full">
-            <SubHeroSlide
+          <div key={each.title} className="rounded-xl max-w-md w-full">
+            <ProductCard
               title={each.title}
               image={each.image}
               route={each.route}

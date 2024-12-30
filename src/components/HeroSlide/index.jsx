@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { FaCartArrowDown } from "react-icons/fa";
 
 const HeroSlide = ({ title, subtitle, image, route, key }) => {
   const router = useRouter();
@@ -14,17 +15,18 @@ const HeroSlide = ({ title, subtitle, image, route, key }) => {
       <Image
         src={image}
         alt=""
+        width={1500}
+        height={500}
         className="object-cover h-full"
-        placeholder="blur"
       />
       <div className="absolute px-10 w-full max-w-3xl left-2 md:left-10">
         <h1 className="text-accentYellow leading-normal mb-5">{title}</h1>
         <h3 className="text-neutralLight">{subtitle}</h3>
         <button
           onClick={() => router.push(route)}
-          className="rounded-full border border-accentYellow hover:bg-secondaryBrown transition px-5 py-3 text-accentYellow mt-10 font-semibold lg:px-10 lg:py-5 bg-primaryBrown"
+          className="rounded-full border border-accentYellow hover:bg-secondaryBrown transition px-10 py-3 text-primaryBrown mt-10 font-semibold lg:px-24 lg:py-5 bg-accentYellow text-xl flex items-center gap-2"
         >
-          Shop Now
+          <FaCartArrowDown size={20} /> Shop Now
         </button>
       </div>
     </div>
