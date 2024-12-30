@@ -1,6 +1,8 @@
 import HeroSlider from "@/components/HeroSlider";
 import SubHeroSlider from "@/components/SubHeroSlider";
 import ProductCard from "@/components/ProductCard";
+import Image from "next/image";
+import Link from "next/link";
 
 const Home = () => {
   const heroData = [
@@ -47,6 +49,92 @@ const Home = () => {
 
   return (
     <div>
+      <div className="flex items-center justify-between gap-5 overflow-auto p-5 md:px-10 md:justify-center lg:px-16">
+        <Link
+          href={"#"}
+          className="flex items-center gap-2 text-base md:text-lg min-w-44 w-full md:justify-center font-semibold text-foreground"
+        >
+          <div className="flex item-center p-1 rounded-full bg-gray-400">
+            <Image
+              src={"/images/icons8-meat-94.png"}
+              alt="Meat icon"
+              width={30}
+              height={30}
+            />
+          </div>
+          Meat Products
+        </Link>
+        <Link
+          href={"#"}
+          className="flex items-center gap-2 text-base md:text-lg min-w-44 w-full md:justify-center font-semibold text-foreground"
+        >
+          <div className="flex item-center p-1 rounded-full bg-gray-400">
+            <Image
+              src={"/images/icons8-salad-94.png"}
+              alt="Meat icon"
+              width={30}
+              height={30}
+            />
+          </div>
+          Vegetables
+        </Link>
+        <Link
+          href={"#"}
+          className="flex items-center gap-2 text-base md:text-lg min-w-44 w-full md:justify-center font-semibold text-foreground"
+        >
+          <div className="flex item-center p-1 rounded-full bg-gray-400">
+            <Image
+              src={"/images/icons8-healthy-eating-94.png"}
+              alt="Meat icon"
+              width={30}
+              height={30}
+            />
+          </div>
+          Fresh Fruits
+        </Link>
+        <Link
+          href={"#"}
+          className="flex items-center gap-2 text-base md:text-lg min-w-44 w-full md:justify-center font-semibold text-foreground"
+        >
+          <div className="flex item-center p-1 rounded-full bg-gray-400">
+            <Image
+              src={"/images/icons8-eggs-94.png"}
+              alt="Meat icon"
+              width={30}
+              height={30}
+            />
+          </div>
+          Diary & Eggs
+        </Link>
+        <Link
+          href={"#"}
+          className="flex items-center gap-2 text-base md:text-lg min-w-44 w-full md:justify-center font-semibold text-foreground"
+        >
+          <div className="flex item-center p-1 rounded-full bg-gray-400">
+            <Image
+              src={"/images/icons8-wheat-94.png"}
+              alt="Meat icon"
+              width={30}
+              height={30}
+            />
+          </div>
+          Grains and Staples
+        </Link>
+        <Link
+          href={"#"}
+          className="flex items-center gap-2 text-base md:text-lg min-w-44 w-full md:justify-center font-semibold text-foreground"
+        >
+          <div className="flex item-center p-1 rounded-full bg-gray-400">
+            <Image
+              src={"/images/icons8-coffee-to-go-94.png"}
+              alt="Meat icon"
+              width={30}
+              height={30}
+            />
+          </div>
+          Beverages
+        </Link>
+      </div>
       <HeroSlider data={heroData} />
       <div className="px-5 py-10 block md:hidden">
         <SubHeroSlider data={subHeroData} />
