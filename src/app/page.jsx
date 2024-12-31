@@ -54,7 +54,7 @@ const Home = () => {
           href={"#"}
           className="flex items-center gap-2 text-base md:text-lg min-w-44 w-full md:justify-center font-semibold text-foreground"
         >
-          <div className="flex item-center p-1 rounded-full bg-gray-400">
+          <div className="flex item-center p-1 rounded-full bg-neutralGray">
             <Image
               src={"/images/icons8-meat-94.png"}
               alt="Meat icon"
@@ -68,7 +68,7 @@ const Home = () => {
           href={"#"}
           className="flex items-center gap-2 text-base md:text-lg min-w-44 w-full md:justify-center font-semibold text-foreground"
         >
-          <div className="flex item-center p-1 rounded-full bg-gray-400">
+          <div className="flex item-center p-1 rounded-full bg-neutralGray">
             <Image
               src={"/images/icons8-salad-94.png"}
               alt="Meat icon"
@@ -82,7 +82,7 @@ const Home = () => {
           href={"#"}
           className="flex items-center gap-2 text-base md:text-lg min-w-44 w-full md:justify-center font-semibold text-foreground"
         >
-          <div className="flex item-center p-1 rounded-full bg-gray-400">
+          <div className="flex item-center p-1 rounded-full bg-neutralGray">
             <Image
               src={"/images/icons8-healthy-eating-94.png"}
               alt="Meat icon"
@@ -96,7 +96,7 @@ const Home = () => {
           href={"#"}
           className="flex items-center gap-2 text-base md:text-lg min-w-44 w-full md:justify-center font-semibold text-foreground"
         >
-          <div className="flex item-center p-1 rounded-full bg-gray-400">
+          <div className="flex item-center p-1 rounded-full bg-neutralGray">
             <Image
               src={"/images/icons8-eggs-94.png"}
               alt="Meat icon"
@@ -110,7 +110,7 @@ const Home = () => {
           href={"#"}
           className="flex items-center gap-2 text-base md:text-lg min-w-44 w-full md:justify-center font-semibold text-foreground"
         >
-          <div className="flex item-center p-1 rounded-full bg-gray-400">
+          <div className="flex item-center p-1 rounded-full bg-neutralGray">
             <Image
               src={"/images/icons8-wheat-94.png"}
               alt="Meat icon"
@@ -124,7 +124,7 @@ const Home = () => {
           href={"#"}
           className="flex items-center gap-2 text-base md:text-lg min-w-44 w-full md:justify-center font-semibold text-foreground"
         >
-          <div className="flex item-center p-1 rounded-full bg-gray-400">
+          <div className="flex item-center p-1 rounded-full bg-neutralGray">
             <Image
               src={"/images/icons8-coffee-to-go-94.png"}
               alt="Meat icon"

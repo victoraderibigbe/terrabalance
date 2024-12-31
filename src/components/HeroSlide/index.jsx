@@ -24,7 +24,7 @@ const HeroSlide = ({ title, subtitle, image, route, key }) => {
         <h3 className="text-neutralLight">{subtitle}</h3>
         <button
           onClick={() => router.push(route)}
-          className="rounded-full border border-accentYellow hover:bg-secondaryBrown transition px-10 py-3 text-primaryBrown mt-10 font-semibold lg:px-24 lg:py-5 bg-accentYellow text-xl flex items-center gap-2"
+          className="rounded-full border border-accentYellow hover:opacity-90 transition px-10 py-3 text-primaryBrown mt-10 font-semibold lg:px-24 lg:py-5 bg-accentYellow text-xl flex items-center gap-2"
         >
           <FaCartArrowDown size={20} /> Shop Now
         </button>

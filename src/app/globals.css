@@ -39,6 +39,27 @@ h6 {
   font-family: var(--font-merriweather);
 }
 
+.carousel-fade .carousel-item {
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.carousel-fade .carousel-item-active {
+  opacity: 1;
+}
+
+.carousel-fade .carousel-inner {
+  position: relative;
+}
+
+.carousel-fade .carousel-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 @layer base {
   h1 {
     @apply text-3xl font-bold md:text-4xl lg:text-6xl;
