@@ -3,8 +3,17 @@ import SubHeroSlider from "@/components/SubHeroSlider";
 import ProductCard from "@/components/ProductCard";
 import Image from "next/image";
 import Link from "next/link";
+import CategoriesCard from "@/components/CategoriesCard";
+import MyProductCard from "@/components/MyProductCard";
+import { productsData } from "@/data/products";
 
 const Home = () => {
+  const products = productsData();
+
+  const even = products.filter((product, idx) => idx % 2 === 0);
+
+  const filteredProducts = even.filter((product, idx) => idx < 8);
+
   const heroData = [
     {
       title: "Discover the Flavors",
@@ -15,13 +24,13 @@ const Home = () => {
     {
       title: "Healthy & Delicious",
       subtitle: "At Delicious Delights, we prioritize your health",
-      image: "/images/fruits-bg.webp",
+      image: "/images/fruits.webp",
       route: "#",
     },
     {
       title: "Homemade & Easy",
       subtitle: "We make it easy for you to enjoy our meals",
-      image: "/images/vegetables-bg.webp",
+      image: "/images/vegetables.webp",
       route: "#",
     },
   ];
@@ -47,8 +56,48 @@ const Home = () => {
     },
   ];
 
+  const categoriesData = [
+    {
+      category: "Meat Products",
+      quantity: "20 items",
+      imageUrl: "/images/icons8-meat-94.png",
+      route: "#",
+    },
+    {
+      category: "Vegetables",
+      quantity: "15 items",
+      imageUrl: "/images/icons8-salad-94.png",
+      route: "#",
+    },
+    {
+      category: "Fresh Fruits",
+      quantity: "10 items",
+      imageUrl: "/images/icons8-healthy-eating-94.png",
+      route: "#",
+    },
+    {
+      category: "Diary & Eggs",
+      quantity: "5 items",
+      imageUrl: "/images/icons8-eggs-94.png",
+      route: "#",
+    },
+    {
+      category: "Grains & Staples",
+      quantity: "15 items",
+      imageUrl: "/images/icons8-wheat-94.png",
+      route: "#",
+    },
+    {
+      category: "Beverages",
+      quantity: "10 items",
+      imageUrl: "/images/icons8-coffee-to-go-94.png",
+      route: "#",
+    },
+  ];
+
   return (
     <div>
+      {/* Sub-navbar */}
       <div className="flex items-center justify-between gap-5 overflow-auto p-5 md:px-10 md:justify-center lg:px-16">
         <Link
           href={"#"}
@@ -135,7 +184,11 @@ const Home = () => {
           Beverages
         </Link>
       </div>
+
+      {/* Hero section */}
       <HeroSlider data={heroData} />
+
+      {/* Sub-hero section */}
       <div className="px-5 py-10 block md:hidden">
         <SubHeroSlider data={subHeroData} />
       </div>
@@ -149,6 +202,73 @@ const Home = () => {
             />
           </div>
         ))}
+      </div>
+
+      {/* Categories section for small and medium screens */}
+      <div className="p-5 md:px-10 lg:hidden">
+        <h2>Categories</h2>
+        <div className="border-t mt-2 py-3 md:py-5 flex flex-col md:flex-row md:flex-wrap md:justify-start gap-2 md:gap-5">
+          {categoriesData.map((cat, idx) => (
+            <Link
+              href={cat.route}
+              key={idx}
+              className="min-w-96 max-w-sm w-full"
+            >
+              <CategoriesCard
+                category={cat.category}
+                quantity={cat.quantity}
+                imageUrl={cat.imageUrl}
+                altText={cat.category}
+                route={cat.route}
+              />
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <div className="lg:grid grid-cols-5 gap-5 p-5 md:px-10 lg:px-16">
+        {/* Categories section for large screens */}
+        <div className="col-span-1">
+          <h2 className="hidden lg:block">Categories</h2>
+          <div className="hidden lg:flex flex-col gap-2 border-t py-5 mt-5">
+            {categoriesData.map((cat, idx) => (
+              <Link
+                href={cat.route}
+                key={idx}
+                className="min-w-96 max-w-sm w-full"
+              >
+                <CategoriesCard
+                  category={cat.category}
+                  quantity={cat.quantity}
+                  imageUrl={cat.imageUrl}
+                  altText={cat.category}
+                  route={cat.route}
+                />
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Popular products section */}
+        <div className="col-span-4">
+          <div className="flex items-center justify-between">
+            <h2>Popular Products</h2>
+            <Link href={"#"}>View All</Link>
+          </div>
+          <div className="flex flex-wrap gap-2 md:gap-5 mt-3 md:mt-5 justify-between border-t py-5">
+            {filteredProducts.map((product, idx) => (
+              <MyProductCard
+                productName={product.title}
+                imageUrl={product.image}
+                imageAlt={product.title}
+                weight={product.weight}
+                price={product.price}
+                route={product.route}
+                key={idx}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
