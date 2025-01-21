@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import MenuToggle from "../MenuToggle";
 import DropdownItem from "../DropdownItem";
-import { sidebarData } from "@/data/sidebarData";
 import Link from "next/link";
+import { sidebarData } from "@/data/dataStore";
 
 const Sidebar = () => {
   const isMenuOpen = useSelector((state) => state.menu.isMenuOpen);

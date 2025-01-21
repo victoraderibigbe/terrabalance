@@ -10,8 +10,8 @@ import ThemeToggle from "../ThemeToggle";
 import MenuToggle from "../MenuToggle";
 import { useEffect, useRef, useState } from "react";
 import CategoriesDropdown from "../CategoriesDropdown";
-import { categories } from "@/data/categories";
 import Link from "next/link";
+import { categories } from "@/data/dataStore";
 
 const Navbar = () => {
   const [openSearch, setOpenSearch] = useState(false);
@@ -41,7 +41,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="p-3 border-b border-neutralGray md:p-5 z-50 sticky top-0 w-full max-w-[1500px] bg-background">
+    <div className="p-3 border-b border-neutralGray md:p-5 z-50 sticky top-0 w-full bg-background overflow-hidden">
       <div className="flex justify-between items-center gap-10">
         <div className="flex items-center gap-2 lg:gap-5">
           <MenuToggle />
@@ -92,7 +92,7 @@ const Navbar = () => {
             autoFocus
           />
         </div>
-        <div className="hidden lg:block">
+        <div className="hidden lg:block text-primary">
           <p className="my-0 font-[600]">Delivery</p>
           <p className="my-0 flex items-center">
             <span>Set your address</span>

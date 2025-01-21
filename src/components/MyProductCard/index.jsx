@@ -10,7 +10,10 @@ const MyProductCard = ({
   key,
 }) => {
   return (
-    <div key={key} className="rounded-lg max-w-[11rem] md:max-w-[18rem] w-full hover:shadow-md">
+    <div
+      key={key}
+      className="rounded-lg max-w-[11rem] md:max-w-[18rem] w-full hover:shadow-md bg-neutralLight dark:bg-[#1F2937]"
+    >
       <div className="h-48 overflow-hidden rounded-t-lg">
         <Image
           src={imageUrl}
@@ -29,7 +32,7 @@ const MyProductCard = ({
           <p className="text-sm md:text-base lg:text-lg font-semibold">
             ₦ {price}
           </p>
-          <button className="bg-accentYellow px-2 py-2 rounded-lg font-semibold text-primaryBrown text-sm md:text-base lg:text-lg md:px-3">
+          <button className="bg-primaryGreen px-2 py-2 rounded-lg font-semibold text-neutralLight text-sm md:text-base lg:text-lg md:px-3">
             Add to Cart
           </button>
         </div>

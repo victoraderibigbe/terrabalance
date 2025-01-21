@@ -3,6 +3,7 @@ import "./globals.css";
 import ClientProvider from "@/providers/ClientProvider";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
+import Footer from "@/components/Footer";
 
 const roboto = Roboto({
   weight: ["400", "700"],
@@ -32,6 +33,7 @@ export default function RootLayout({ children }) {
           <Sidebar />
           <Navbar />
           {children}
+          <Footer />
         </ClientProvider>
       </body>
     </html>
