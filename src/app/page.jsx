@@ -52,7 +52,7 @@ const Home = () => {
       <div className="px-5 py-10 block md:hidden">
         <SubHeroSlider data={subHeroData} />
       </div>
-      <div className="hidden md:flex items-center justify-center p-16 gap-5">
+      <div className="hidden md:flex items-center justify-center p-10 lg:p-16 gap-3 lg:gap-5">
         {subHeroData.map((each) => (
           <div key={each.title} className="rounded-xl max-w-md w-full">
             <ProductCard
@@ -72,7 +72,7 @@ const Home = () => {
             <Link
               href={cat.route}
               key={idx}
-              className="md:max-w-sm md:min-w-96"
+              className="md:max-w-sm md:min-w-56"
             >
               <CategoriesCard
                 category={cat.category}
@@ -115,17 +115,18 @@ const Home = () => {
             <h2>Popular Products</h2>
             <Link href={"#"}>View All</Link>
           </div>
-          <div className="flex flex-wrap gap-2 md:gap-5 mt-3 md:mt-5 justify-between border-t py-5">
+          <div className="grid grid-cols-4 md:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-5 mt-3 md:mt-5 border-t py-5">
             {filteredProducts.map((product, idx) => (
-              <MyProductCard
-                productName={product.title}
-                imageUrl={product.image}
-                imageAlt={product.title}
-                weight={product.weight}
-                price={product.price}
-                route={product.route}
-                key={idx}
-              />
+              <div key={product.id} className="col-span-2 md:col-span-1">
+                <MyProductCard
+                  productName={product.title}
+                  imageUrl={product.image}
+                  imageAlt={product.title}
+                  weight={product.weight}
+                  price={product.price}
+                  route={`/products/${product.id}`}
+                />
+              </div>
             ))}
           </div>
         </div>

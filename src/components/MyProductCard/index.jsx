@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const MyProductCard = ({
   imageUrl,
@@ -7,12 +8,11 @@ const MyProductCard = ({
   weight,
   price,
   route,
-  key,
 }) => {
   return (
-    <div
-      key={key}
-      className="rounded-lg max-w-[11rem] md:max-w-[18rem] w-full hover:shadow-md bg-neutralLight dark:bg-[#1F2937]"
+    <Link
+      href={route}
+      className="rounded-lg max-w-[11rem] md:max-w-[18rem] w-full hover:shadow-md bg-neutralLight dark:bg-[#1F2937] !no-underline"
     >
       <div className="h-48 overflow-hidden rounded-t-lg">
         <Image
@@ -37,7 +37,7 @@ const MyProductCard = ({
           </button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

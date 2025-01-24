@@ -41,11 +41,11 @@ const Navbar = () => {
   };
 
   return (
-    <div className="p-3 border-b border-neutralGray md:p-5 z-50 sticky top-0 w-full bg-background overflow-hidden">
+    <div className="p-3 border-b border-neutralGray md:p-5 z-50 sticky top-0 w-full bg-background overflow-hidden max-w-[1600px]">
       <div className="flex justify-between items-center gap-10">
         <div className="flex items-center gap-2 lg:gap-5">
           <MenuToggle />
-          <div className="flex items-center gap-1">
+          <Link href={"/"} className="flex items-center gap-1 !no-underline">
             <Image
               src={"/terra-logo.png"}
               alt="Terra Balance logo"
@@ -55,14 +55,14 @@ const Navbar = () => {
             <p className="font-semibold text-base md:text-lg lg:text-xl">
               Terra Balance
             </p>
-          </div>
+          </Link>
         </div>
         <div className="hidden lg:flex" ref={dropdownRef}>
           <CategoriesDropdown
             openDropdown={openDropdown}
             onToggle={() => setOpenDropdown(!openDropdown)}
           >
-            <ul className="grid grid-cols-3 gap-3 items-start text-xl text-foreground leading-loose">
+            <ul className="grid grid-cols-3 gap-3 items-start text-xl text-foreground leading-loose z-[99]">
               {categories.map((category, index) => (
                 <li key={index}>
                   <span className="font-bold mb-2">{category.title}</span>
