@@ -47,7 +47,7 @@ const ProductDetails = async ({ params }) => {
 
       {/* Breadcrumb */}
       <div className="p-5">
-        <MyBreadcrumb />
+        <MyBreadcrumb currentItemName={product.title} />
       </div>
 
       <div className="mb-5 md:mb-10">
@@ -76,7 +76,7 @@ const ProductDetails = async ({ params }) => {
               </Carousel>
             </div>
           </div>
-          <div className="col-span-2 md:col-span-1 px-5 md:px-8 lg:px-16">
+          <div className="col-span-2 md:col-span-1 pt-5 md:pt-0 px-5 md:px-8 lg:px-16">
             <h2>{product.title}</h2>
             <p>{product.weight}g</p>
             <h3>₦{product.price}</h3>
