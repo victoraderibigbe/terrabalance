@@ -14,7 +14,7 @@ const HeroSlider = ({ data }) => {
   }, [data.length]);
 
   return (
-    <div className="h-96 carousel-fade relative">
+    <div className="h-96 carousel-fade relative overflow-hidden">
       {data.map((each, index) => (
         <div
           key={each.title}
