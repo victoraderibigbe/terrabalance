@@ -72,7 +72,7 @@ const Navbar = () => {
                         key={index}
                         className="text-gray-600 dark:text-gray-400"
                       >
-                        <Link href={"#"}>{item}</Link>
+                        <Link href={`/${category.title.toLowerCase()}`}>{item}</Link>
                       </li>
                     ))}
                   </ul>

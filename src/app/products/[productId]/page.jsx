@@ -2,14 +2,12 @@ import MyBreadcrumb from "@/components/MyBreadcrumb";
 import MyProductCard from "@/components/MyProductCard";
 import QuantityButton from "@/components/QuantityButton";
 import { UserReview } from "@/components/UserReview";
-import { categoriesData, productsData } from "@/data/dataStore";
+import { productsData } from "@/data/dataStore";
 import { Carousel } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
 
 const ProductDetails = async ({ params }) => {
-  const categories = categoriesData();
-
   const productId = (await params).productId;
 
   const allProducts = productsData();
@@ -24,27 +22,6 @@ const ProductDetails = async ({ params }) => {
 
   return (
     <div>
-      {/* Sub-navbar */}
-      <div className="flex items-center justify-between gap-5 overflow-auto p-5 md:px-0">
-        {categories.map((cat, idx) => (
-          <Link
-            key={idx}
-            href={cat.route}
-            className="flex items-center gap-2 text-base md:text-lg min-w-28 w-full md:justify-center font-semibold text-foreground"
-          >
-            <div className="flex item-center p-1 rounded-full bg-neutralGray">
-              <Image
-                src={cat.imageUrl}
-                alt={cat.category}
-                width={30}
-                height={30}
-              />
-            </div>
-            {cat.category}
-          </Link>
-        ))}
-      </div>
-
       {/* Breadcrumb */}
       <div className="p-5">
         <MyBreadcrumb currentItemName={product.title} />
@@ -111,7 +88,7 @@ const ProductDetails = async ({ params }) => {
           </div>
         </div>
 
-        <div className="px-5 md:px-10">
+        <div className="px-5 md:px-10 mt-5">
           <h2 className="mb-3 md:mb-5">Related Products</h2>
           <div className="grid grid-cols-4 gap-2 md:gap-5">
             {relatedProducts.map((eachProduct) => (

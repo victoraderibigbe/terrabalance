@@ -10,7 +10,7 @@ const SubHeroSlider = ({ data }) => {
             key={each.title}
             title={each.title}
             image={each.image}
-            route={each.route}
+            route={"/products"}
           />
         ))}
       </Carousel>

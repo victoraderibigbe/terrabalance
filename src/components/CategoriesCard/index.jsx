@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const CategoriesCard = ({ category, quantity, imageUrl, altText }) => {
+const CategoriesCard = ({ category, imageUrl, altText }) => {
   return (
     <>
       <div className="flex items-center gap-5">
@@ -9,7 +9,6 @@ const CategoriesCard = ({ category, quantity, imageUrl, altText }) => {
         </div>
         <div>
           <p className="font-semibold">{category}</p>
-          <p className="text-gray-500">{quantity}</p>
         </div>
       </div>
     </>

@@ -616,7 +616,7 @@ export const productsData = () => {
       ],
     },
     {
-      id: 22,
+      id: 31,
       category: "Corn",
       title: "Corn Flour",
       description: "Fine corn flour for baking",
@@ -631,7 +631,7 @@ export const productsData = () => {
       ],
     },
     {
-      id: 23,
+      id: 32,
       category: "Corn",
       title: "Popcorn",
       description: "Delicious popcorn kernels",
@@ -930,19 +930,19 @@ export const heroDetails = () => {
       title: "Explore Our Livestock",
       subtitle: "High-quality goats, rabbits, turkeys, and more",
       image: "/images/livestock-bg.jpg",
-      route: "#",
+      route: "/products",
     },
     {
       title: "Fresh and Sustainable",
       subtitle: "Sustainably sourced products for healthy living",
       image: "/images/sustainable-farming.jpg",
-      route: "#",
+      route: "/products",
     },
     {
       title: "Farm Fresh Produce",
       subtitle: "Fresh plantains, cassava, corn, and more",
       image: "/images/farm-produce.jpg",
-      route: "#",
+      route: "/products",
     },
   ];
 };
@@ -953,25 +953,25 @@ export const subHeroDetails = () => {
       title: "Live Animals",
       subtitle: "Healthy live goats, rabbits, turkeys, and more",
       image: "/images/live-animals.jpg",
-      route: "#",
+      route: "/products",
     },
     {
       title: "Fresh Produce",
       subtitle: "Freshly harvested plantains, cassava, and corn",
       image: "/images/fresh-produce.jpg",
-      route: "#",
+      route: "/products",
     },
     {
       title: "Dairy & Eggs",
       subtitle: "High-quality dairy products and fresh eggs",
       image: "/images/dairy-eggs.webp",
-      route: "#",
+      route: "/products",
     },
     {
       title: "Snail Products",
       subtitle: "Fresh and dried snails for your culinary needs",
       image: "/images/live-snail.jpg",
-      route: "#",
+      route: "/products",
     },
   ];
 };

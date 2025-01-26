@@ -26,7 +26,7 @@ const HeroSlider = ({ data }) => {
             title={each.title}
             subtitle={each.subtitle}
             image={each.image}
-            route={each.route}
+            route={"/products"}
           />
         </div>
       ))}
