@@ -116,11 +116,11 @@ const Navbar = () => {
           <CiSearch className="text-3xl md:hidden" onClick={handleOpenSearch} />
           <CiLocationOn className="text-3xl lg:hidden" />
           <CiUser className="text-3xl hidden md:block" />
-          <div className="relative">
-            <CiShoppingCart
-              className="text-3xl cursor-pointer"
-              onClick={() => router.push("/cart")}
-            />
+          <div
+            className="relative cursor-pointer"
+            onClick={() => router.push("/cart")}
+          >
+            <CiShoppingCart className="text-3xl" />
             {cartCount > 0 && (
               <div className="p-2 size-5 rounded-full bg-red-500 absolute top-[-5px] right-[-5px] flex items-center justify-center text-sm text-neutralLight font-bold">
                 {cartCount}
