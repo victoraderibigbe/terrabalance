@@ -12,6 +12,8 @@ import { useEffect, useRef, useState } from "react";
 import CategoriesDropdown from "../CategoriesDropdown";
 import Link from "next/link";
 import { categories } from "@/data/dataStore";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [openSearch, setOpenSearch] = useState(false);
@@ -39,6 +41,14 @@ const Navbar = () => {
   const handleOpenSearch = () => {
     setOpenSearch(!openSearch);
   };
+
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const cartCount = cartItems.reduce(
+    (count, item) => count + (item.quantity || 0),
+    0
+  );
+
+  const router = useRouter();
 
   return (
     <div className="p-3 border-b border-neutralGray md:p-5 z-50 sticky top-0 w-full bg-background">
@@ -72,7 +82,9 @@ const Navbar = () => {
                         key={index}
                         className="text-gray-600 dark:text-gray-400"
                       >
-                        <Link href={`/${category.title.toLowerCase()}`}>{item}</Link>
+                        <Link href={`/${category.title.toLowerCase()}`}>
+                          {item}
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -105,10 +117,15 @@ const Navbar = () => {
           <CiLocationOn className="text-3xl lg:hidden" />
           <CiUser className="text-3xl hidden md:block" />
           <div className="relative">
-            <CiShoppingCart className="text-3xl" />
-            <div className="p-2 size-5 rounded-full bg-red-500 absolute top-[-5px] right-[-5px] flex items-center justify-center text-sm text-neutralWhite font-bold">
-              2
-            </div>
+            <CiShoppingCart
+              className="text-3xl cursor-pointer"
+              onClick={() => router.push("/cart")}
+            />
+            {cartCount > 0 && (
+              <div className="p-2 size-5 rounded-full bg-red-500 absolute top-[-5px] right-[-5px] flex items-center justify-center text-sm text-neutralLight font-bold">
+                {cartCount}
+              </div>
+            )}
           </div>
         </div>
       </div>

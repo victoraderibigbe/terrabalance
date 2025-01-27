@@ -90,16 +90,9 @@ const Home = () => {
             <Link href={"/products"}>View All</Link>
           </div>
           <div className="grid grid-cols-4 md:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-5 mt-3 md:mt-5 border-t py-5">
-            {filteredProducts.map((product, idx) => (
+            {filteredProducts?.map((product, idx) => (
               <div key={product.id} className="col-span-2 md:col-span-1">
-                <MyProductCard
-                  productName={product.title}
-                  imageUrl={product.image}
-                  imageAlt={product.title}
-                  weight={product.weight}
-                  price={product.price}
-                  route={`/products/${product.id}`}
-                />
+                <MyProductCard product={product} />
               </div>
             ))}
           </div>

@@ -93,14 +93,7 @@ const ProductDetails = async ({ params }) => {
           <div className="grid grid-cols-4 gap-2 md:gap-5">
             {relatedProducts.map((eachProduct) => (
               <div key={eachProduct.id} className="col-span-2 lg:col-span-1">
-                <MyProductCard
-                  productName={eachProduct.title}
-                  imageUrl={eachProduct.image}
-                  imageAlt={eachProduct.title}
-                  weight={eachProduct.weight}
-                  price={eachProduct.price}
-                  route={`/products/${eachProduct.id}`}
-                />
+                <MyProductCard product={eachProduct} />
               </div>
             ))}
           </div>
