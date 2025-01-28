@@ -30,6 +30,31 @@ body {
   margin: auto;
 }
 
+/* -------- Scrollbar Start ------- */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--primary-green);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-green);
+}
+/* -------- Scrollbar End --------- */
+
 h1,
 h2,
 h3,

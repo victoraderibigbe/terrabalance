@@ -7,6 +7,7 @@ import { Table } from "flowbite-react";
 import { FaTimes } from "react-icons/fa";
 import Image from "next/image";
 import { MdOutlineDeleteForever } from "react-icons/md";
+import Link from "next/link";
 
 const CartPage = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -33,8 +34,24 @@ const CartPage = () => {
       <MyBreadcrumb />
 
       {cartItems.length === 0 ? (
-        <div>
-          <p>Your cart is empty.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-5">
+          <div className="p-5 text-center">
+            <p>Your cart is empty.</p>
+            <p>
+              To add items, visit the{" "}
+              <Link href="/products" className="text-primaryGreen hover:text-secondaryGreen">
+                Product Catalog
+              </Link>
+            </p>
+          </div>
+          <div>
+            <Image
+              src={"images/empty-cart.svg"}
+              alt="Empty cart"
+              width={500}
+              height={500}
+            />
+          </div>
         </div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-10 my-5">

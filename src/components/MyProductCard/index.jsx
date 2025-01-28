@@ -3,7 +3,7 @@
 import { addToCart, removeFromCart } from "@/store/cartSlice";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 
@@ -12,6 +12,16 @@ const MyProductCard = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Check if the product is already in the cart
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingItem = cart.find((item) => item.id === product.id);
+    if (existingItem) {
+      setIsButtonClicked(true);
+      setQuantity(existingItem.quantity);
+    }
+  }, [product.id]);
 
   const handleClick = () => {
     setIsButtonClicked(true);
@@ -27,6 +37,10 @@ const MyProductCard = ({ product }) => {
     if (quantity > 1) {
       dispatch(removeFromCart(product.id));
       setQuantity((prevQuantity) => prevQuantity - 1);
+    } else {
+      dispatch(removeFromCart(product.id));
+      setIsButtonClicked(false);
+      setQuantity(1);
     }
   };
 
@@ -53,10 +67,7 @@ const MyProductCard = ({ product }) => {
           <div className="flex items-center justify-between border border-primaryGreen dark:border-secondaryGreen rounded-lg px-2 md:px-5 py-1 md:h-12 w-full">
             <button
               id="decrement"
-              className={`text-foreground ${
-                quantity <= 1 ? " opacity-50" : ""
-              }`}
-              disabled={quantity <= 1}
+              className="text-foreground"
               onClick={handleDecrement}
             >
               <FaMinus />
