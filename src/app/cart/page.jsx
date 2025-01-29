@@ -1,10 +1,10 @@
 "use client";
 
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart, clearCart } from "@/store/cartSlice";
+import { removeFromCart, clearCart, addToCart } from "@/store/cartSlice";
 import MyBreadcrumb from "@/components/MyBreadcrumb";
 import { Table } from "flowbite-react";
-import { FaTimes } from "react-icons/fa";
+import { FaMinus, FaPlus, FaTimes } from "react-icons/fa";
 import Image from "next/image";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import Link from "next/link";
@@ -28,6 +28,14 @@ const CartPage = () => {
     );
   };
 
+  const handleIncrement = (product) => {
+    dispatch(addToCart(product));
+  };
+
+  const handleDecrement = (product) => {
+    dispatch(removeFromCart(product.id));
+  };
+
   return (
     <div className="p-5 md:px-10">
       {/* Breadcrumb */}
@@ -39,7 +47,10 @@ const CartPage = () => {
             <p>Your cart is empty.</p>
             <p>
               To add items, visit the{" "}
-              <Link href="/products" className="text-primaryGreen hover:text-secondaryGreen">
+              <Link
+                href="/products"
+                className="text-primaryGreen hover:text-secondaryGreen"
+              >
                 Product Catalog
               </Link>
             </p>
@@ -94,7 +105,31 @@ const CartPage = () => {
                         {item.title}
                       </Table.Cell>
                       <Table.Cell>₦{item.price}</Table.Cell>
-                      <Table.Cell>{item.quantity}</Table.Cell>
+                      <Table.Cell>
+                        <div className="flex items-center justify-between border border-primaryBrown dark:border-primaryBrown rounded-full px-10 h-16 w-full max-w-sm">
+                          <button
+                            id="decrement"
+                            className="text-foreground"
+                            onClick={() => handleDecrement(item)}
+                          >
+                            <FaMinus />
+                          </button>
+                          <input
+                            type="number"
+                            value={item.quantity}
+                            min="1"
+                            readOnly
+                            className="w-10 md:pl-2 p-0 border-none text-foreground focus:ring-0 bg-transparent text-center font-semibold text-lg"
+                          />
+                          <button
+                            id="increment"
+                            className="text-foreground"
+                            onClick={() => handleIncrement(item)}
+                          >
+                            <FaPlus />
+                          </button>
+                        </div>
+                      </Table.Cell>
                       <Table.Cell>₦{item.quantity * item.price}</Table.Cell>
                       <Table.Cell>
                         <FaTimes

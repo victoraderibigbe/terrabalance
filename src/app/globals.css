@@ -85,6 +85,10 @@ h6 {
   height: 100%;
 }
 
+button:hover {
+  opacity: 0.9;
+}
+
 @layer base {
   h1 {
     @apply text-3xl font-bold md:text-4xl lg:text-6xl;

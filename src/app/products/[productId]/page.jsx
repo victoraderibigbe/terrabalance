@@ -1,6 +1,6 @@
+import AddToCartButton from "@/components/AdToCartButton";
 import MyBreadcrumb from "@/components/MyBreadcrumb";
 import MyProductCard from "@/components/MyProductCard";
-import QuantityButton from "@/components/QuantityButton";
 import { UserReview } from "@/components/UserReview";
 import { productsData } from "@/data/dataStore";
 import { Carousel } from "flowbite-react";
@@ -28,8 +28,8 @@ const ProductDetails = async ({ params }) => {
       </div>
 
       <div className="mb-5 md:mb-10">
-        <div className="grid grid-cols-2">
-          <div className="col-span-2 md:col-span-1 px-5 md:px-10 lg:px-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="lg:col-span-2 px-5 md:px-10 lg:px-24">
             <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 col-span-2">
               <Carousel slide={false}>
                 <Image
@@ -53,15 +53,12 @@ const ProductDetails = async ({ params }) => {
               </Carousel>
             </div>
           </div>
-          <div className="col-span-2 md:col-span-1 pt-5 md:pt-0 px-5 md:px-8 lg:px-16">
+          <div className="lg:col-span-1 pt-5 md:pt-0 px-5">
             <h2>{product.title}</h2>
             <p>{product.weight}g</p>
             <h3>₦{product.price}</h3>
-            <div className="flex items-center justify-between gap-3 my-5">
-              <QuantityButton />
-              <button className="bg-primaryBrown border-primaryBrown text-neutralLight px-10 h-16 w-full gap-3 rounded-full font-semibold">
-                Add To Cart
-              </button>
+            <div className="my-5">
+              <AddToCartButton product={product} />
             </div>
             <p>{product.description}</p>
 
