@@ -91,9 +91,7 @@ const Sidebar = () => {
                       <ul className="border p-2 rounded-md">
                         {subItem.items.map((item, idx) => (
                           <li key={idx} className="mb-2">
-                            <Link href={`/${subItem.title.toLowerCase()}`}>
-                              {item}
-                            </Link>
+                            <Link href={item.route}>{item.title}</Link>
                           </li>
                         ))}
                       </ul>
@@ -122,7 +120,7 @@ const Sidebar = () => {
                       <ul className="border p-2 rounded-md">
                         {subItem.items.map((item, idx) => (
                           <li key={idx} className="mb-2">
-                            <Link href={"#"}>{item}</Link>
+                            <Link href={item.route}>{item.title}</Link>
                           </li>
                         ))}
                       </ul>

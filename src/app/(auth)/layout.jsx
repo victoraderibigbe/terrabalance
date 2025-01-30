@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const layout = ({ children }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 min-h-screen">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 min-h-screen">
       <div className="p-5 lg:p-10">
         <nav>
           <Link href={"/"} className="flex items-center gap-1 !no-underline">
@@ -22,7 +22,7 @@ const layout = ({ children }) => {
 
         <div className="my-5">{children}</div>
       </div>
-      <div className="hidden md:flex justify-center items-center col-span-2">
+      <div className="hidden md:flex justify-center items-center md:cols-pan-1 xl:col-span-2">
         <Image
           src={loginBg}
           alt="A woman smiling"

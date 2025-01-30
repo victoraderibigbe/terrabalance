@@ -1,21 +1,39 @@
 "use client";
 
+import { loginUser } from "@/store/authSlice";
 import { validateLogin } from "@/utils/validationSchema";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Link from "next/link";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
 
 const initialValues = {
   email: "",
   password: "",
 };
 
-const handleSubmit = (values) => {
-  console.log(values);
-};
-
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state.auth);
   const [rememberMe, setRememberMe] = useState(false);
+
+  const handleSubmit = async (values) => {
+    try {
+      const login = await dispatch(loginUser(values));
+
+      if (!loginUser.fulfilled.match(login)) {
+        toast.error(login.payload || "Something went wrong!");
+        return;
+      }
+
+      toast.success("Login successful");
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to create account");
+    }
+  };
 
   return (
     <Formik
@@ -91,8 +109,8 @@ const LoginForm = () => {
           </div>
 
           <div className="mb-5">
-            <button type="submit" className="form-btn">
-              Login to my account
+            <button type="submit" className="form-btn" disabled={loading}>
+              {loading ? "Logging in..." : "Login to my account"}
             </button>
           </div>
         </Form>

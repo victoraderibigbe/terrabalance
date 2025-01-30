@@ -123,18 +123,22 @@ button:hover {
   }
 
   .form-input {
-    @apply w-full rounded-lg h-14 border-foreground focus:ring-0 focus:border-foreground bg-transparent;
+    @apply w-full rounded-lg h-14 bg-transparent;
   }
 
   .valid {
-    @apply text-primaryGreen dark:text-secondaryGreen border-primaryGreen dark:border-secondaryGreen;
+    @apply text-foreground border-foreground focus:ring-foreground focus:border-foreground;
   }
 
   .invalid {
-    @apply text-red-500 border-red-500;
+    @apply text-red-500 border-red-500 focus:ring-red-500 focus:border-red-500;
   }
 
   .form-btn {
     @apply w-full h-14 rounded-lg bg-primaryGreen dark:bg-secondaryGreen text-neutralLight font-medium tracking-wide transition;
+  }
+
+  .check-box {
+    @apply rounded focus:ring-0;
   }
 }

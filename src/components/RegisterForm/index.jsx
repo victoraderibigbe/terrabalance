@@ -1,7 +1,11 @@
 "use client";
 
+import { registerUser } from "@/store/authSlice";
 import { validateRegister } from "@/utils/validationSchema";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
 
 const initialValues = {
   firstName: "",
@@ -10,8 +14,25 @@ const initialValues = {
   password: "",
 };
 const RegisterForm = () => {
-  const handleSubmit = (values) => {
-    console.log(values);
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state.auth);
+  const router = useRouter();
+
+  const handleSubmit = async (values) => {
+    try {
+      const register = await dispatch(registerUser(values));
+
+      if (!registerUser.fulfilled.match(register)) {
+        toast.error(register.payload || "Something went wrong!");
+        return;
+      }
+
+      toast.success("Account created successfully");
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to create account");
+    }
   };
 
   return (
@@ -115,8 +136,8 @@ const RegisterForm = () => {
           </div>
 
           <div className="mb-5">
-            <button type="submit" className="form-btn">
-              Create my account
+            <button type="submit" className="form-btn" disabled={loading}>
+              {loading ? "Creating account..." : "Create an account"}
             </button>
           </div>
         </Form>

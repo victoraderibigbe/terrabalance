@@ -654,57 +654,118 @@ export const sidebarData = [
     content: [
       {
         title: "Goat",
-        items: ["Shop All", "Goat Meat", "Goat Milk", "Goat Cheese"],
+        items: [
+          { title: "Shop All", route: "/categories/goat/shop-all" },
+          { title: "Goat Meat", route: "/categories/goat/goat-meat" },
+          { title: "Goat Milk", route: "/categories/goat/goat-milk" },
+          { title: "Goat Cheese", route: "/categories/goat/goat-cheese" },
+        ],
       },
       {
         title: "Rabbit",
-        items: ["Shop All", "Rabbit Meat", "Rabbit Fur"],
+        items: [
+          { title: "Shop All", route: "/categories/rabbit/shop-all" },
+          { title: "Rabbit Meat", route: "/categories/rabbit/rabbit-meat" },
+          { title: "Rabbit Fur", route: "/categories/rabbit/rabbit-fur" },
+        ],
       },
       {
         title: "Turkey",
-        items: ["Shop All", "Turkey Meat", "Turkey Eggs"],
+        items: [
+          { title: "Shop All", route: "/categories/turkey/shop-all" },
+          { title: "Turkey Meat", route: "/categories/turkey/turkey-meat" },
+          { title: "Turkey Eggs", route: "/categories/turkey/turkey-eggs" },
+        ],
       },
       {
         title: "Catfish",
-        items: ["Shop All", "Fresh Catfish", "Smoked Catfish"],
+        items: [
+          { title: "Shop All", route: "/categories/catfish/shop-all" },
+          {
+            title: "Fresh Catfish",
+            route: "/categories/catfish/fresh-catfish",
+          },
+          {
+            title: "Smoked Catfish",
+            route: "/categories/catfish/smoked-catfish",
+          },
+        ],
       },
       {
         title: "Pig",
-        items: ["Shop All", "Pork", "Bacon", "Ham"],
+        items: [
+          { title: "Shop All", route: "/categories/pig/shop-all" },
+          { title: "Pork", route: "/categories/pig/pork" },
+          { title: "Bacon", route: "/categories/pig/bacon" },
+          { title: "Ham", route: "/categories/pig/ham" },
+        ],
       },
       {
         title: "Snail",
-        items: ["Shop All", "Fresh Snail", "Dried Snail"],
+        items: [
+          { title: "Shop All", route: "/categories/snail/shop-all" },
+          { title: "Fresh Snail", route: "/categories/snail/fresh-snail" },
+          { title: "Dried Snail", route: "/categories/snail/dried-snail" },
+        ],
       },
       {
         title: "Chicken",
-        items: ["Shop All", "Chicken Meat", "Chicken Eggs"],
+        items: [
+          { title: "Shop All", route: "/categories/chicken/shop-all" },
+          { title: "Chicken Meat", route: "/categories/chicken/chicken-meat" },
+          { title: "Chicken Eggs", route: "/categories/chicken/chicken-eggs" },
+        ],
       },
       {
         title: "Egg",
-        items: ["Shop All", "Chicken Eggs", "Turkey Eggs", "Duck Eggs"],
+        items: [
+          { title: "Shop All", route: "/categories/egg/shop-all" },
+          { title: "Chicken Eggs", route: "/categories/egg/chicken-eggs" },
+          { title: "Turkey Eggs", route: "/categories/egg/turkey-eggs" },
+          { title: "Duck Eggs", route: "/categories/egg/duck-eggs" },
+        ],
       },
       {
         title: "Plantain",
         items: [
-          "Shop All",
-          "Fresh Plantain",
-          "Dried Plantain",
-          "Plantain Flour",
+          { title: "Shop All", route: "/categories/plantain/shop-all" },
+          {
+            title: "Fresh Plantain",
+            route: "/categories/plantain/fresh-plantain",
+          },
+          {
+            title: "Dried Plantain",
+            route: "/categories/plantain/dried-plantain",
+          },
+          {
+            title: "Plantain Flour",
+            route: "/categories/plantain/plantain-flour",
+          },
         ],
       },
       {
         title: "Cassava",
-        items: ["Shop All", "Fresh Cassava", "Cassava Flour", "Garri"],
+        items: [
+          { title: "Shop All", route: "/categories/cassava/shop-all" },
+          {
+            title: "Fresh Cassava",
+            route: "/categories/cassava/fresh-cassava",
+          },
+          {
+            title: "Cassava Flour",
+            route: "/categories/cassava/cassava-flour",
+          },
+          { title: "Garri", route: "/categories/cassava/garri" },
+        ],
       },
       {
         title: "Corn",
         items: [
-          "Shop All",
-          "Fresh Corn",
-          "Dried Corn",
-          "Corn Flour",
-          "Popcorn",
+          { title: "Shop All", route: "/categories/corn/shop-all" },
+          { title: "Fresh Corn", route: "/categories/corn/fresh-corn" },
+          { title: "Dried Corn", route: "/categories/corn/dried-corn" },
+          { title: "Corn Flour", route: "/categories/corn/corn-flour" },
+          { title: "Popcorn", route: "/categories/corn/popcorn" },
         ],
       },
     ],
@@ -714,11 +775,25 @@ export const sidebarData = [
     content: [
       {
         title: "Seasonal Deals",
-        items: ["Black Friday", "Cyber Monday", "Christmas Deals"],
+        items: [
+          { title: "Black Friday", route: "/deals/seasonal/black-friday" },
+          { title: "Cyber Monday", route: "/deals/seasonal/cyber-monday" },
+          {
+            title: "Christmas Deals",
+            route: "/deals/seasonal/christmas-deals",
+          },
+        ],
       },
       {
         title: "Weekly Deals",
-        items: ["Top Picks", "Discounts on Goat Products", "Pork Discounts"],
+        items: [
+          { title: "Top Picks", route: "/deals/weekly/top-picks" },
+          {
+            title: "Discounts on Goat Products",
+            route: "/deals/weekly/goat-discounts",
+          },
+          { title: "Pork Discounts", route: "/deals/weekly/pork-discounts" },
+        ],
       },
     ],
   },
@@ -727,47 +802,95 @@ export const sidebarData = [
     content: [
       {
         title: "Goat",
-        items: ["New Goat Meat", "New Goat Milk"],
+        items: [
+          { title: "New Goat Meat", route: "/new-arrivals/goat/new-goat-meat" },
+          { title: "New Goat Milk", route: "/new-arrivals/goat/new-goat-milk" },
+        ],
       },
       {
         title: "Rabbit",
-        items: ["New Rabbit Meat"],
+        items: [
+          {
+            title: "New Rabbit Meat",
+            route: "/new-arrivals/rabbit/new-rabbit-meat",
+          },
+        ],
       },
       {
         title: "Turkey",
-        items: ["New Turkey Meat"],
+        items: [
+          {
+            title: "New Turkey Meat",
+            route: "/new-arrivals/turkey/new-turkey-meat",
+          },
+        ],
       },
       {
         title: "Catfish",
-        items: ["New Fresh Catfish"],
+        items: [
+          {
+            title: "New Fresh Catfish",
+            route: "/new-arrivals/catfish/new-fresh-catfish",
+          },
+        ],
       },
       {
         title: "Pig",
-        items: ["New Pork"],
+        items: [{ title: "New Pork", route: "/new-arrivals/pig/new-pork" }],
       },
       {
         title: "Snail",
-        items: ["New Fresh Snail"],
+        items: [
+          {
+            title: "New Fresh Snail",
+            route: "/new-arrivals/snail/new-fresh-snail",
+          },
+        ],
       },
       {
         title: "Chicken",
-        items: ["New Chicken Meat"],
+        items: [
+          {
+            title: "New Chicken Meat",
+            route: "/new-arrivals/chicken/new-chicken-meat",
+          },
+        ],
       },
       {
         title: "Egg",
-        items: ["New Chicken Eggs"],
+        items: [
+          {
+            title: "New Chicken Eggs",
+            route: "/new-arrivals/egg/new-chicken-eggs",
+          },
+        ],
       },
       {
         title: "Plantain",
-        items: ["New Fresh Plantain"],
+        items: [
+          {
+            title: "New Fresh Plantain",
+            route: "/new-arrivals/plantain/new-fresh-plantain",
+          },
+        ],
       },
       {
         title: "Cassava",
-        items: ["New Fresh Cassava"],
+        items: [
+          {
+            title: "New Fresh Cassava",
+            route: "/new-arrivals/cassava/new-fresh-cassava",
+          },
+        ],
       },
       {
         title: "Corn",
-        items: ["New Fresh Corn"],
+        items: [
+          {
+            title: "New Fresh Corn",
+            route: "/new-arrivals/corn/new-fresh-corn",
+          },
+        ],
       },
     ],
   },
@@ -776,30 +899,34 @@ export const sidebarData = [
     content: [
       {
         title: "Auth Pages",
-        items: ["Sign In", "Sign Up", "Password Recovery"],
+        items: [
+          { title: "Sign In", route: "/login" },
+          { title: "Sign Up", route: "/register" },
+          { title: "Change Password", route: "#" },
+        ],
       },
       {
         title: "Shop User",
         items: [
-          "Order History",
-          "Wishlist",
-          "Payment Methods",
-          "My Reviews",
-          "Personal Info",
-          "Addresses",
-          "Notifications",
+          { title: "Order History", route: "/account/order-history" },
+          { title: "Wishlist", route: "/account/wishlist" },
+          { title: "Payment Methods", route: "/account/payment-methods" },
+          { title: "My Reviews", route: "/account/my-reviews" },
+          { title: "Personal Info", route: "/account/personal-info" },
+          { title: "Addresses", route: "/account/addresses" },
+          { title: "Notifications", route: "/account/notifications" },
         ],
       },
       {
         title: "Marketplace User",
         items: [
-          "Dashboard",
-          "Products",
-          "Sales",
-          "Payouts",
-          "Purchase",
-          "Favorites",
-          "Settings",
+          { title: "Dashboard", route: "/marketplace/dashboard" },
+          { title: "Products", route: "/marketplace/products" },
+          { title: "Sales", route: "/marketplace/sales" },
+          { title: "Payouts", route: "/marketplace/payouts" },
+          { title: "Purchase", route: "/marketplace/purchase" },
+          { title: "Favorites", route: "/marketplace/favorites" },
+          { title: "Settings", route: "/marketplace/settings" },
         ],
       },
     ],
