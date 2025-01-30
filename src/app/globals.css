@@ -104,17 +104,37 @@ button:hover {
 
   h4 {
     @apply text-base font-semibold md:text-lg;
-  } 
+  }
 
   h5 {
     @apply text-sm font-semibold md:text-base;
   }
 
   p {
-    @apply my-3 text-base font-medium leading-normal tracking-wide md:text-lg md:my-5;
+    @apply my-3 text-sm md:text-base font-medium leading-normal tracking-wide md:my-5;
   }
 
   a {
-    @apply text-base font-medium transition md:text-lg hover:underline hover:underline-offset-4;
+    @apply text-sm font-medium transition md:text-base hover:underline hover:underline-offset-4;
+  }
+
+  .form-label {
+    @apply text-sm md:text-base block font-medium tracking-wide mb-1;
+  }
+
+  .form-input {
+    @apply w-full rounded-lg h-14 border-foreground focus:ring-0 focus:border-foreground bg-transparent;
+  }
+
+  .valid {
+    @apply text-primaryGreen dark:text-secondaryGreen border-primaryGreen dark:border-secondaryGreen;
+  }
+
+  .invalid {
+    @apply text-red-500 border-red-500;
+  }
+
+  .form-btn {
+    @apply w-full h-14 rounded-lg bg-primaryGreen dark:bg-secondaryGreen text-neutralLight font-medium tracking-wide transition;
   }
 }

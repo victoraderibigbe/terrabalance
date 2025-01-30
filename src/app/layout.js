@@ -1,10 +1,6 @@
 import { Roboto, Merriweather } from "next/font/google";
 import "./globals.css";
 import ClientProvider from "@/providers/ClientProvider";
-import Navbar from "@/components/Navbar";
-import Sidebar from "@/components/Sidebar";
-import Footer from "@/components/Footer";
-import CategoriesNav from "@/components/CategoriesNav";
 
 const roboto = Roboto({
   weight: ["400", "700"],
@@ -30,13 +26,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${roboto.variable} ${merriweather.variable} antialiased`}
       >
-        <ClientProvider>
-          <Sidebar />
-          <Navbar />
-          <CategoriesNav />
-          {children}
-          <Footer />
-        </ClientProvider>
+        <ClientProvider>{children}</ClientProvider>
       </body>
     </html>
   );

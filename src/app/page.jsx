@@ -10,6 +10,7 @@ import {
   productsData,
   subHeroDetails,
 } from "@/data/dataStore";
+import ProductLayout from "@/layouts/ProductLayout";
 
 const Home = () => {
   const products = productsData();
@@ -22,7 +23,7 @@ const Home = () => {
   const filteredProducts = even.filter((product, idx) => idx < 12);
 
   return (
-    <div>
+    <ProductLayout>
       {/* Hero section */}
       <HeroSlider data={heroData} />
 
@@ -98,7 +99,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </div>
+    </ProductLayout>
   );
 };
 
