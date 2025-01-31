@@ -655,117 +655,117 @@ export const sidebarData = [
       {
         title: "Goat",
         items: [
-          { title: "Shop All", route: "/categories/goat/shop-all" },
-          { title: "Goat Meat", route: "/categories/goat/goat-meat" },
-          { title: "Goat Milk", route: "/categories/goat/goat-milk" },
-          { title: "Goat Cheese", route: "/categories/goat/goat-cheese" },
+          { title: "Shop All", route: "/goat" },
+          { title: "Goat Meat", route: "/goat" },
+          { title: "Goat Milk", route: "/goat" },
+          { title: "Goat Cheese", route: "/goat" },
         ],
       },
       {
         title: "Rabbit",
         items: [
-          { title: "Shop All", route: "/categories/rabbit/shop-all" },
-          { title: "Rabbit Meat", route: "/categories/rabbit/rabbit-meat" },
-          { title: "Rabbit Fur", route: "/categories/rabbit/rabbit-fur" },
+          { title: "Shop All", route: "/rabbit" },
+          { title: "Rabbit Meat", route: "/rabbit" },
+          { title: "Rabbit Fur", route: "/rabbit" },
         ],
       },
       {
         title: "Turkey",
         items: [
-          { title: "Shop All", route: "/categories/turkey/shop-all" },
-          { title: "Turkey Meat", route: "/categories/turkey/turkey-meat" },
-          { title: "Turkey Eggs", route: "/categories/turkey/turkey-eggs" },
+          { title: "Shop All", route: "/turkey" },
+          { title: "Turkey Meat", route: "/turkey" },
+          { title: "Turkey Eggs", route: "/turkey" },
         ],
       },
       {
         title: "Catfish",
         items: [
-          { title: "Shop All", route: "/categories/catfish/shop-all" },
+          { title: "Shop All", route: "/catfish" },
           {
             title: "Fresh Catfish",
-            route: "/categories/catfish/fresh-catfish",
+            route: "/catfish",
           },
           {
             title: "Smoked Catfish",
-            route: "/categories/catfish/smoked-catfish",
+            route: "/catfish",
           },
         ],
       },
       {
         title: "Pig",
         items: [
-          { title: "Shop All", route: "/categories/pig/shop-all" },
-          { title: "Pork", route: "/categories/pig/pork" },
-          { title: "Bacon", route: "/categories/pig/bacon" },
-          { title: "Ham", route: "/categories/pig/ham" },
+          { title: "Shop All", route: "/pig" },
+          { title: "Pork", route: "/pig" },
+          { title: "Bacon", route: "/pig" },
+          { title: "Ham", route: "/pig" },
         ],
       },
       {
         title: "Snail",
         items: [
-          { title: "Shop All", route: "/categories/snail/shop-all" },
-          { title: "Fresh Snail", route: "/categories/snail/fresh-snail" },
-          { title: "Dried Snail", route: "/categories/snail/dried-snail" },
+          { title: "Shop All", route: "/snail" },
+          { title: "Fresh Snail", route: "/snail" },
+          { title: "Dried Snail", route: "/snail" },
         ],
       },
       {
         title: "Chicken",
         items: [
-          { title: "Shop All", route: "/categories/chicken/shop-all" },
-          { title: "Chicken Meat", route: "/categories/chicken/chicken-meat" },
-          { title: "Chicken Eggs", route: "/categories/chicken/chicken-eggs" },
+          { title: "Shop All", route: "/chicken" },
+          { title: "Chicken Meat", route: "/chicken" },
+          { title: "Chicken Eggs", route: "/chicken" },
         ],
       },
       {
         title: "Egg",
         items: [
-          { title: "Shop All", route: "/categories/egg/shop-all" },
-          { title: "Chicken Eggs", route: "/categories/egg/chicken-eggs" },
-          { title: "Turkey Eggs", route: "/categories/egg/turkey-eggs" },
-          { title: "Duck Eggs", route: "/categories/egg/duck-eggs" },
+          { title: "Shop All", route: "/egg" },
+          { title: "Chicken Eggs", route: "/egg" },
+          { title: "Turkey Eggs", route: "/egg" },
+          { title: "Duck Eggs", route: "/egg" },
         ],
       },
       {
         title: "Plantain",
         items: [
-          { title: "Shop All", route: "/categories/plantain/shop-all" },
+          { title: "Shop All", route: "/plantain" },
           {
             title: "Fresh Plantain",
-            route: "/categories/plantain/fresh-plantain",
+            route: "/plantain",
           },
           {
             title: "Dried Plantain",
-            route: "/categories/plantain/dried-plantain",
+            route: "/plantain",
           },
           {
             title: "Plantain Flour",
-            route: "/categories/plantain/plantain-flour",
+            route: "/plantain",
           },
         ],
       },
       {
         title: "Cassava",
         items: [
-          { title: "Shop All", route: "/categories/cassava/shop-all" },
+          { title: "Shop All", route: "/cassava" },
           {
             title: "Fresh Cassava",
-            route: "/categories/cassava/fresh-cassava",
+            route: "/cassava",
           },
           {
             title: "Cassava Flour",
-            route: "/categories/cassava/cassava-flour",
+            route: "/cassava",
           },
-          { title: "Garri", route: "/categories/cassava/garri" },
+          { title: "Garri", route: "/cassava" },
         ],
       },
       {
         title: "Corn",
         items: [
-          { title: "Shop All", route: "/categories/corn/shop-all" },
-          { title: "Fresh Corn", route: "/categories/corn/fresh-corn" },
-          { title: "Dried Corn", route: "/categories/corn/dried-corn" },
-          { title: "Corn Flour", route: "/categories/corn/corn-flour" },
-          { title: "Popcorn", route: "/categories/corn/popcorn" },
+          { title: "Shop All", route: "/corn" },
+          { title: "Fresh Corn", route: "/corn" },
+          { title: "Dried Corn", route: "/corn" },
+          { title: "Corn Flour", route: "/corn" },
+          { title: "Popcorn", route: "/corn" },
         ],
       },
     ],
@@ -776,23 +776,23 @@ export const sidebarData = [
       {
         title: "Seasonal Deals",
         items: [
-          { title: "Black Friday", route: "/deals/seasonal/black-friday" },
-          { title: "Cyber Monday", route: "/deals/seasonal/cyber-monday" },
+          { title: "Black Friday", route: "#" },
+          { title: "Cyber Monday", route: "#" },
           {
             title: "Christmas Deals",
-            route: "/deals/seasonal/christmas-deals",
+            route: "#",
           },
         ],
       },
       {
         title: "Weekly Deals",
         items: [
-          { title: "Top Picks", route: "/deals/weekly/top-picks" },
+          { title: "Top Picks", route: "#" },
           {
             title: "Discounts on Goat Products",
-            route: "/deals/weekly/goat-discounts",
+            route: "#",
           },
-          { title: "Pork Discounts", route: "/deals/weekly/pork-discounts" },
+          { title: "Pork Discounts", route: "#" },
         ],
       },
     ],
@@ -803,8 +803,8 @@ export const sidebarData = [
       {
         title: "Goat",
         items: [
-          { title: "New Goat Meat", route: "/new-arrivals/goat/new-goat-meat" },
-          { title: "New Goat Milk", route: "/new-arrivals/goat/new-goat-milk" },
+          { title: "New Goat Meat", route: "/goat" },
+          { title: "New Goat Milk", route: "/goat" },
         ],
       },
       {
@@ -812,7 +812,7 @@ export const sidebarData = [
         items: [
           {
             title: "New Rabbit Meat",
-            route: "/new-arrivals/rabbit/new-rabbit-meat",
+            route: "/rabbit",
           },
         ],
       },
@@ -821,7 +821,7 @@ export const sidebarData = [
         items: [
           {
             title: "New Turkey Meat",
-            route: "/new-arrivals/turkey/new-turkey-meat",
+            route: "/turkey",
           },
         ],
       },
@@ -830,20 +830,20 @@ export const sidebarData = [
         items: [
           {
             title: "New Fresh Catfish",
-            route: "/new-arrivals/catfish/new-fresh-catfish",
+            route: "/catfish",
           },
         ],
       },
       {
         title: "Pig",
-        items: [{ title: "New Pork", route: "/new-arrivals/pig/new-pork" }],
+        items: [{ title: "New Pork", route: "/pig" }],
       },
       {
         title: "Snail",
         items: [
           {
             title: "New Fresh Snail",
-            route: "/new-arrivals/snail/new-fresh-snail",
+            route: "/snail",
           },
         ],
       },
@@ -852,7 +852,7 @@ export const sidebarData = [
         items: [
           {
             title: "New Chicken Meat",
-            route: "/new-arrivals/chicken/new-chicken-meat",
+            route: "/chicken",
           },
         ],
       },
@@ -861,7 +861,7 @@ export const sidebarData = [
         items: [
           {
             title: "New Chicken Eggs",
-            route: "/new-arrivals/egg/new-chicken-eggs",
+            route: "/egg",
           },
         ],
       },
@@ -870,7 +870,7 @@ export const sidebarData = [
         items: [
           {
             title: "New Fresh Plantain",
-            route: "/new-arrivals/plantain/new-fresh-plantain",
+            route: "/plantain",
           },
         ],
       },
@@ -879,7 +879,7 @@ export const sidebarData = [
         items: [
           {
             title: "New Fresh Cassava",
-            route: "/new-arrivals/cassava/new-fresh-cassava",
+            route: "/cassava",
           },
         ],
       },
@@ -888,7 +888,7 @@ export const sidebarData = [
         items: [
           {
             title: "New Fresh Corn",
-            route: "/new-arrivals/corn/new-fresh-corn",
+            route: "/corn",
           },
         ],
       },
@@ -908,25 +908,25 @@ export const sidebarData = [
       {
         title: "Shop User",
         items: [
-          { title: "Order History", route: "/account/order-history" },
-          { title: "Wishlist", route: "/account/wishlist" },
-          { title: "Payment Methods", route: "/account/payment-methods" },
-          { title: "My Reviews", route: "/account/my-reviews" },
-          { title: "Personal Info", route: "/account/personal-info" },
-          { title: "Addresses", route: "/account/addresses" },
-          { title: "Notifications", route: "/account/notifications" },
+          { title: "Order History", route: "#" },
+          { title: "Wishlist", route: "#" },
+          { title: "Payment Methods", route: "#" },
+          { title: "My Reviews", route: "#" },
+          { title: "Personal Info", route: "#" },
+          { title: "Addresses", route: "#" },
+          { title: "Notifications", route: "#" },
         ],
       },
       {
         title: "Marketplace User",
         items: [
-          { title: "Dashboard", route: "/marketplace/dashboard" },
-          { title: "Products", route: "/marketplace/products" },
-          { title: "Sales", route: "/marketplace/sales" },
-          { title: "Payouts", route: "/marketplace/payouts" },
-          { title: "Purchase", route: "/marketplace/purchase" },
-          { title: "Favorites", route: "/marketplace/favorites" },
-          { title: "Settings", route: "/marketplace/settings" },
+          { title: "Dashboard", route: "#" },
+          { title: "Products", route: "#" },
+          { title: "Sales", route: "#" },
+          { title: "Payouts", route: "#" },
+          { title: "Purchase", route: "#" },
+          { title: "Favorites", route: "#" },
+          { title: "Settings", route: "#" },
         ],
       },
     ],
