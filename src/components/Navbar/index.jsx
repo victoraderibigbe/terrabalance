@@ -1,10 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { CiSearch } from "react-icons/ci";
-import { CiLocationOn } from "react-icons/ci";
-import { CiShoppingCart } from "react-icons/ci";
-import { CiUser } from "react-icons/ci";
 import { MdExpandMore } from "react-icons/md";
 import ThemeToggle from "../ThemeToggle";
 import MenuToggle from "../MenuToggle";
@@ -14,6 +10,8 @@ import Link from "next/link";
 import { categories } from "@/data/dataStore";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import { AccountDropdown } from "../AccountDropdown";
+import { MdShoppingCart, MdSearch } from "react-icons/md";
 
 const Navbar = () => {
   const [openSearch, setOpenSearch] = useState(false);
@@ -47,6 +45,8 @@ const Navbar = () => {
     (count, item) => count + (item.quantity || 0),
     0
   );
+
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
 
   const router = useRouter();
 
@@ -94,7 +94,7 @@ const Navbar = () => {
           </CategoriesDropdown>
         </div>
         <div className="md:flex justify-start gap-2 px-5 h-16 items-center border border-neutralGray rounded-full hidden flex-1">
-          <CiSearch className="text-3xl" />
+          <MdSearch className="text-2xl" />
           <input
             type="search"
             name="search"
@@ -113,16 +113,15 @@ const Navbar = () => {
         </div>
         <div className="flex items-center gap-2 md:gap-4 lg:gap-8">
           <ThemeToggle />
-          <CiSearch className="text-3xl md:hidden" onClick={handleOpenSearch} />
-          <CiLocationOn className="text-3xl lg:hidden" />
-          <CiUser className="text-3xl hidden md:block" />
+          <MdSearch className="text-2xl md:hidden" onClick={handleOpenSearch} />
+          <AccountDropdown isAuthenticated={isAuthenticated} user={user} />
           <div
             className="relative cursor-pointer"
             onClick={() => router.push("/cart")}
           >
-            <CiShoppingCart className="text-3xl" />
+            <MdShoppingCart className="text-2xl" />
             {cartCount > 0 && (
-              <div className="p-2 size-5 rounded-full bg-red-500 absolute top-[-5px] right-[-5px] flex items-center justify-center text-sm text-neutralLight font-bold">
+              <div className="p-2 size-4 rounded-full bg-red-500 absolute top-[-5px] right-[-5px] flex items-center justify-center text-sm text-neutralLight font-bold">
                 {cartCount}
               </div>
             )}
@@ -131,7 +130,7 @@ const Navbar = () => {
       </div>
       {openSearch && (
         <div className="flex justify-start gap-2 px-5 items-center mt-2 border border-neutralGray rounded-full">
-          <CiSearch className="text-3xl" />
+          <MdSearch className="text-2xl" />
           <input
             type="search"
             name="search"

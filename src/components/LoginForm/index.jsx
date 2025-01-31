@@ -4,6 +4,7 @@ import { loginUser } from "@/store/authSlice";
 import { validateLogin } from "@/utils/validationSchema";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +16,7 @@ const initialValues = {
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const { loading, error } = useSelector((state) => state.auth);
   const [rememberMe, setRememberMe] = useState(false);
 

@@ -2,8 +2,7 @@
 
 import { toggleTheme } from "@/store/themeSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { CiLight } from "react-icons/ci";
-import { CiDark } from "react-icons/ci";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 const ThemeToggle = () => {
   const theme = useSelector((state) => state.theme.theme);
@@ -16,9 +15,9 @@ const ThemeToggle = () => {
   return (
     <button onClick={handleToggle}>
       {theme === "light" ? (
-        <CiLight className="text-3xl" />
+        <MdLightMode className="text-2xl" />
       ) : (
-        <CiDark className="text-3xl" />
+        <MdDarkMode className="text-2xl" />
       )}
     </button>
   );

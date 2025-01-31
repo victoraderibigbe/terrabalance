@@ -8,10 +8,14 @@ import { FaMinus, FaPlus, FaTimes } from "react-icons/fa";
 import Image from "next/image";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const CartPage = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleRemoveFromCart = (productId) => {
     dispatch(removeFromCart(productId));
@@ -164,7 +168,14 @@ const CartPage = () => {
               <span>Estimated Total</span>
               <span className="font-semibold">₦{getTotalPrice()}</span>
             </div>
-            <button className="bg-primaryBrown dark:bg-secondaryBrown py-3 px-5 rounded-xl text-neutralLight w-full mt-5 hover:opacity-90">
+            <button
+              onClick={() =>
+                isAuthenticated
+                  ? router.push("/cart/checkout")
+                  : router.push("/login")
+              }
+              className="bg-primaryBrown dark:bg-secondaryBrown py-3 px-5 rounded-xl text-neutralLight w-full mt-5 hover:opacity-90"
+            >
               Proceed to Checkout (₦{getTotalPrice()})
             </button>
           </div>

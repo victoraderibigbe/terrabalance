@@ -29,7 +29,12 @@ export async function POST(req) {
     return NextResponse.json(
       {
         token,
-        user: { id: user._id, firstName: user.firstName, email: user.email },
+        user: {
+          id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+        },
       },
       { status: 200 }
     );
