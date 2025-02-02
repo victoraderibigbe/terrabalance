@@ -1,4 +1,4 @@
-import AddToCartButton from "@/components/AdToCartButton";
+import AddToCartButton from "@/components/AddToCartButton";
 import MyBreadcrumb from "@/components/MyBreadcrumb";
 import MyProductCard from "@/components/MyProductCard";
 import { UserReview } from "@/components/UserReview";
@@ -7,17 +7,19 @@ import { Carousel } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const ProductDetails = async ({ params }) => {
-  const productId = (await params).productId;
-
+const ProductDetails = ({ params }) => {
+  const { productId } = params;
   const allProducts = productsData();
-
   const product = allProducts.find(
     (product) => product.id === Number(productId)
   );
 
+  if (!product) {
+    return <div>Product not found</div>; // Handle product not found
+  }
+
   const relatedProducts = allProducts.filter(
-    (myProduct) => myProduct.category == product.category
+    (myProduct) => myProduct.category === product.category
   );
 
   return (
