@@ -7,9 +7,20 @@ import { Carousel } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const ProductDetails = async ({ params }) => {
-  const { productId } = await params;
-  
+export async function generateMetadata({ params }) {
+  const { productId } = params;
+  const allProducts = productsData();
+  const product = allProducts.find((p) => p.id === Number(productId));
+
+  return {
+    title: `${product.title} - Terra Balance Enterprises`,
+    description: product.description,
+  };
+}
+
+const ProductDetails = ({ params }) => {
+  const { productId } = params;
+
   const allProducts = productsData();
   const product = allProducts.find(
     (product) => product.id === Number(productId)
