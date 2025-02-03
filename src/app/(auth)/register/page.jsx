@@ -1,6 +1,14 @@
 import RegisterForm from "@/components/RegisterForm";
 import Link from "next/link";
 
+export const generateMetadata = () => {
+  return {
+    title: "Register - Terra Balance Enterprises",
+    description:
+      "Create an account to shop our farm products and services, and manage your orders.",
+  };
+};
+
 const RegisterPage = () => {
   return (
     <div>

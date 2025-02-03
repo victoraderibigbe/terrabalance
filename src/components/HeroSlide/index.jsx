@@ -14,7 +14,7 @@ const HeroSlide = ({ title, subtitle, image, route, key }) => {
     >
       <Image
         src={image}
-        alt=""
+        alt="Background Image"
         width={1600}
         height={500}
         className="object-cover h-full opacity-40"

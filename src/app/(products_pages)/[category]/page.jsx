@@ -1,9 +1,20 @@
 import MyBreadcrumb from "@/components/MyBreadcrumb";
 import MyProductCard from "@/components/MyProductCard";
 import { productsData } from "@/data/dataStore";
+import { capitalize } from "@/utils/utils";
+
+export const generateMetadata = async ({ params }) => {
+  const { category } = await params;
+
+  return {
+    title: `${capitalize(category)} - Terra Balance Enterprises`,
+    description:
+      "Browse our extensive catalog of farm products and services, available for order.",
+  };
+};
 
 const CategorizedProducts = async ({ params }) => {
-  const category = (await params).category;
+  const { category } = await params;
 
   const allProducts = productsData();
 

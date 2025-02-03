@@ -1,6 +1,14 @@
 import Link from "next/link";
 import LoginForm from "@/components/LoginForm";
 
+export const generateMetadata = () => {
+  return {
+    title: "Login - Terra Balance Enterprises",
+    description:
+      "Log in to your account to shop our farm products and services, and manage your orders.",
+  };
+};
+
 const LoginPage = () => {
   return (
     <div>

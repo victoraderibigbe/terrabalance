@@ -2,6 +2,14 @@ import MyBreadcrumb from "@/components/MyBreadcrumb";
 import MyProductCard from "@/components/MyProductCard";
 import { productsData } from "@/data/dataStore";
 
+export const generateMetadata = () => {
+  return {
+    title: "Product Catalog - Terra Balance Enterprises",
+    description:
+      "Browse our extensive catalog of farm products and services, available for order.",
+  };
+};
+
 const ProductsPage = () => {
   const products = productsData();
 
