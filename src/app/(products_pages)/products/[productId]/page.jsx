@@ -1,3 +1,5 @@
+"use client";
+
 import AddToCartButton from "@/components/AddToCartButton";
 import MyBreadcrumb from "@/components/MyBreadcrumb";
 import MyProductCard from "@/components/MyProductCard";
@@ -6,9 +8,11 @@ import { productsData } from "@/data/dataStore";
 import { Carousel } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
-const ProductDetails = async ({ params }) => {
-  const { productId } = await params;
+const ProductDetails = () => {
+  const params = useParams();
+  const { productId } = params;
   const allProducts = productsData();
   const product = allProducts.find(
     (product) => product.id === Number(productId)
