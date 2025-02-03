@@ -1,4 +1,5 @@
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import Users from "@/models/Users";
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
@@ -31,8 +32,24 @@ export async function POST(req) {
     // Save the user to the database
     const savedUser = await newUser.save();
 
+    // Generate a JWT token
+    const token = jwt.sign({ id: savedUser._id }, process.env.JWT_SECRET_KEY, {
+      expiresIn: process.env.JWT_EXPIRATION,
+    });
+
     // Return the saved user
-    return NextResponse.json(savedUser, { status: 201 });
+    return NextResponse.json(
+      {
+        token,
+        user: {
+          id: savedUser._id,
+          firstName: savedUser.firstName,
+          lastName: savedUser.lastName,
+          email: savedUser.email,
+        },
+      },
+      { status: 201 }
+    );
   } catch (err) {
     // Return an error response
     return NextResponse.json({ message: err.message }, { status: 400 });
