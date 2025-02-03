@@ -648,7 +648,7 @@ export const productsData = () => {
   ];
 };
 
-export const sidebarData = [
+export const sidebarData = [ 
   {
     title: "Categories",
     content: [
