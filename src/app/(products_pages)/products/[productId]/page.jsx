@@ -7,8 +7,8 @@ import { Carousel } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const ProductDetails = ({ params }) => {
-  const { productId } = params;
+const ProductDetails = async ({ params }) => {
+  const { productId } = await params;
   const allProducts = productsData();
   const product = allProducts.find(
     (product) => product.id === Number(productId)
