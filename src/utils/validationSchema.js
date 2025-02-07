@@ -17,3 +17,16 @@ export const validateRegister = Yup.object({
     .required("Field is required")
     .min(8, "Enter a minimum of 8 characters"),
 });
+
+export const validateContact = Yup.object({
+  fullName: Yup.string()
+    .min(2, "Full Name must be at least 2 characters long")
+    .max(50, "Full Name must be 50 characters or less")
+    .required("Full Name is required"),
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Email is required"),
+  message: Yup.string()
+    .min(10, "Message must be at least 10 characters long")
+    .required("Message is required"),
+});

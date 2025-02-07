@@ -22,6 +22,7 @@ const config = {
         accentBlue: "var(--accent-blue)",
         neutralLight: "var(--neutral-light)",
         neutralGray: "var(--neutral-gray)",
+        darkerGray: "var(--darker-gray)",
       },
     },
   },

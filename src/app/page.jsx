@@ -11,6 +11,7 @@ import {
   subHeroDetails,
 } from "@/data/dataStore";
 import ProductLayout from "@/layouts/ProductLayout";
+import ContactForm from "@/components/ContactForm";
 
 const Home = () => {
   const products = productsData();
@@ -98,6 +99,45 @@ const Home = () => {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Contact Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-10 px-5 py-10 md:px-10 md:py-16 lg:py-16 lg:px-24 bg-primaryBrown text-neutralLight">
+        <div>
+          <h2 className="text-white">Get In Touch</h2>
+          <p>
+            We&apos;re here to answer any question you have about our products
+            and programs. Kindly drop your message using the contact form. You
+            can as well reach us using to contact information below.
+          </p>
+          <p>
+            <strong>Email:</strong>{" "}
+            <Link href={"mailto:terrabalanceenterprise@gmail.com"}>
+              terrabalanceenterprise@gmail.com
+            </Link>{" "}
+            <br />
+            <strong>Phone:</strong>{" "}
+            <Link href={"tel:+2348168131939"}>+2348168131939</Link>,{" "}
+            <Link href={"tel:+2347045347214"}>+2347045347214</Link> <br />
+            <strong>Address:</strong> Phase 2 road, Obafemi Awolowo University
+            Teaching Hospital, Ile-Ife, Nigeria
+          </p>
+        </div>
+        <div>
+          <ContactForm />
+        </div>
+      </div>
+
+      {/* Map section */}
+      <div>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.771461783164!2d4.549552474486474!3d7.490467311172852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10383790d70690b9%3A0x7e8f8401f8906ca4!2sObafemi%20Awolowo%20University%20Teaching%20Hospital!5e0!3m2!1sen!2sng!4v1738930114274!5m2!1sen!2sng"
+          height="450"
+          style={{ border: 0, width: "100%" }}
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
       </div>
     </ProductLayout>
   );

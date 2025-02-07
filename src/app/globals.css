@@ -6,13 +6,14 @@
   --background: #ffffff;
   --foreground: #171717;
   --primary-green: #228b22;
-  --primary-brown: #8b4513;
+  --primary-brown: #734332;
   --secondary-green: #32cd32;
-  --secondary-brown: #a0522d;
+  --secondary-brown: #8b4513;
   --accent-yellow: #ffd700;
   --accent-blue: #87ceeb;
   --neutral-light: #f5f5f5;
   --neutral-gray: #d3d3d3;
+  --darker-gray: #2e2e2e;
   --font-roboto: "Roboto", sans-serif;
   --font-merriweather: "Merriweather", serif;
 }
@@ -118,6 +119,10 @@ button:hover {
     @apply text-sm font-medium transition md:text-base hover:underline hover:underline-offset-4;
   }
 
+  li {
+    @apply my-3;
+  }
+
   .form-label {
     @apply text-sm md:text-base block font-medium tracking-wide mb-1;
   }
@@ -126,12 +131,24 @@ button:hover {
     @apply w-full rounded-lg h-14 bg-transparent;
   }
 
+  .contact-valid {
+    @apply w-full rounded-lg h-14 text-neutralLight border-neutralLight focus:ring-neutralLight focus:border-neutralLight placeholder:text-gray-900 bg-gray-300 text-black;
+  }
+
+  .contact-invalid {
+    @apply w-full rounded-lg h-14 text-red-500 border-red-500 focus:ring-red-500 focus:border-red-500 bg-gray-300 placeholder:text-red-500;
+  }
+
   .valid {
     @apply text-foreground border-foreground focus:ring-foreground focus:border-foreground;
   }
 
   .invalid {
     @apply text-red-500 border-red-500 focus:ring-red-500 focus:border-red-500;
+  }
+
+  .text-area {
+    @apply w-full rounded-lg h-32;
   }
 
   .form-btn {
