@@ -35,9 +35,9 @@ const CategorizedProducts = async ({ params }) => {
           Found <b>{productsInCategory?.length}</b> items
         </p>
       </div>
-      <div className="grid grid-cols-4 md:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-5 px-5 md:px-10">
+      <div className="product-cards-layout px-5 md:px-10">
         {productsInCategory?.map((product, idx) => (
-          <div key={product.id} className="col-span-2 md:col-span-1">
+          <div key={product.id}>
             <MyProductCard product={product} />
           </div>
         ))}

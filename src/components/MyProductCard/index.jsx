@@ -45,7 +45,7 @@ const MyProductCard = ({ product }) => {
   };
 
   return (
-    <div className="rounded-lg max-w-[11rem] md:max-w-[18rem] w-full hover:shadow-md bg-neutralLight dark:bg-[#1F2937]">
+    <div className="rounded-lg hover:shadow-md bg-neutralLight dark:bg-[#1F2937]">
       <div className="h-48 overflow-hidden rounded-t-lg">
         <Link href={`/products/${product.id}`}>
           <Image

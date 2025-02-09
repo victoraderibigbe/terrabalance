@@ -21,7 +21,7 @@ const Home = () => {
 
   const even = products.filter((product, idx) => idx % 2 === 0);
 
-  const filteredProducts = even.filter((product, idx) => idx < 12);
+  const filteredProducts = even.filter((product, idx) => idx < 13);
 
   return (
     <ProductLayout>
@@ -91,9 +91,9 @@ const Home = () => {
             <h2>Popular Products</h2>
             <Link href={"/products"}>View All</Link>
           </div>
-          <div className="grid grid-cols-4 md:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-5 mt-3 md:mt-5 border-t py-5">
-            {filteredProducts?.map((product, idx) => (
-              <div key={product.id} className="col-span-2 md:col-span-1">
+          <div className="product-cards-layout mt-3 md:mt-5 border-t py-5">
+            {filteredProducts?.map((product) => (
+              <div key={product.id}>
                 <MyProductCard product={product} />
               </div>
             ))}

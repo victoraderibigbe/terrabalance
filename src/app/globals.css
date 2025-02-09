@@ -90,6 +90,24 @@ button:hover {
   opacity: 0.9;
 }
 
+.product-cards-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 5px;
+}
+
+@media screen and (min-width: 650px) {
+  .product-cards-layout {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .product-cards-layout {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
 @layer base {
   h1 {
     @apply text-3xl font-bold md:text-4xl lg:text-6xl;
