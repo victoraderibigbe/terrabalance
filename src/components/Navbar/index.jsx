@@ -8,10 +8,12 @@ import { useEffect, useRef, useState } from "react";
 import CategoriesDropdown from "../CategoriesDropdown";
 import Link from "next/link";
 import { categories } from "@/data/dataStore";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { AccountDropdown } from "../AccountDropdown";
 import { MdShoppingCart, MdSearch } from "react-icons/md";
+import { toggleDrawer } from "@/store/drawerSlice";
+import AddressDrawer from "../AddressDrawer";
 
 const Navbar = () => {
   const [openSearch, setOpenSearch] = useState(false);
@@ -40,6 +42,8 @@ const Navbar = () => {
     setOpenSearch(!openSearch);
   };
 
+  const dispatch = useDispatch();
+
   const cartItems = useSelector((state) => state.cart.cartItems);
   const cartCount = cartItems.reduce(
     (count, item) => count + (item.quantity || 0),
@@ -47,6 +51,11 @@ const Navbar = () => {
   );
 
   const { user, isAuthenticated } = useSelector((state) => state.auth);
+  const isDrawerOpen = useSelector((state) => state.drawer.isDrawerOpen);
+
+  useEffect(() => {
+    console.log(isDrawerOpen);
+  }, [isDrawerOpen]);
 
   const router = useRouter();
 
@@ -104,7 +113,10 @@ const Navbar = () => {
             autoFocus
           />
         </div>
-        <div className="hidden lg:block text-primary">
+        <div
+          className="hidden lg:block text-primary cursor-pointer"
+          onClick={() => dispatch(toggleDrawer())}
+        >
           <p className="my-0 font-[600]">Delivery</p>
           <p className="my-0 flex items-center">
             <span>Set your address</span>
@@ -141,6 +153,8 @@ const Navbar = () => {
           />
         </div>
       )}
+
+      {isDrawerOpen && <AddressDrawer />}
     </div>
   );
 };
