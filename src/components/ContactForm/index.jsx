@@ -4,6 +4,7 @@ import { validateContact } from "@/utils/validationSchema";
 import { Spinner } from "flowbite-react";
 import { Field, Form, Formik } from "formik";
 import { useState } from "react";
+import { MdSend } from "react-icons/md";
 
 const initialValues = {
   fullName: "",
@@ -102,7 +103,9 @@ const ContactForm = () => {
                   <span className="ml-2">Submitting...</span>
                 </div>
               ) : (
-                <span>Send my message</span>
+                <span className="flex items-center gap-2 justify-center">
+                  Send my message <MdSend size={20} />
+                </span>
               )}
             </button>
           </div>

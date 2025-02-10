@@ -30,6 +30,20 @@ const LoginForm = () => {
       }
 
       toast.success("Login successful");
+
+      if (localStorage["isCheckoutClicked"]) {
+        const isCheckoutClicked = localStorage.getItem("isCheckoutClicked");
+
+        if (isCheckoutClicked) {
+          router.push("/cart/checkout");
+          localStorage.setItem("isCheckoutClicked", false);
+          return;
+        }
+
+          localStorage.setItem("isCheckoutClicked", false);
+        router.push("/");
+      }
+
       router.push("/");
     } catch (error) {
       console.log(error);

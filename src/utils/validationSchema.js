@@ -30,3 +30,13 @@ export const validateContact = Yup.object({
     .min(10, "Message must be at least 10 characters long")
     .required("Message is required"),
 });
+
+export const validateAddress = Yup.object({
+  country: Yup.string().required("Country is required"),
+  city: Yup.string().required("City is required"),
+  state: Yup.string().required("State is required"),
+  street: Yup.string().required("Street is required"),
+  zipCode: Yup.string()
+    .required("Zip Code is required")
+    .matches(/^[0-9]{6}$/, "Zip Code must be 6 digits long"),
+});

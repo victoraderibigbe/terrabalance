@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { MdExpandMore } from "react-icons/md";
+import { MdExpandMore, MdLocationOn } from "react-icons/md";
 import ThemeToggle from "../ThemeToggle";
 import MenuToggle from "../MenuToggle";
 import { useEffect, useRef, useState } from "react";
@@ -115,7 +115,9 @@ const Navbar = () => {
         </div>
         <div
           className="hidden lg:block text-primary cursor-pointer"
-          onClick={() => dispatch(toggleDrawer())}
+          onClick={() =>
+            isAuthenticated ? dispatch(toggleDrawer()) : router.push("/login")
+          }
         >
           <p className="my-0 font-[600]">Delivery</p>
           <p className="my-0 flex items-center">
@@ -124,6 +126,14 @@ const Navbar = () => {
           </p>
         </div>
         <div className="flex items-center gap-2 md:gap-4 lg:gap-8">
+          <div
+            className="block lg:hidden"
+            onClick={() =>
+              isAuthenticated ? dispatch(toggleDrawer()) : router.push("/login")
+            }
+          >
+            <MdLocationOn className="text-2xl" />
+          </div>
           <ThemeToggle />
           <MdSearch className="text-2xl md:hidden" onClick={handleOpenSearch} />
           <AccountDropdown isAuthenticated={isAuthenticated} user={user} />

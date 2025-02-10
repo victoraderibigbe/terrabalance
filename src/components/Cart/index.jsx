@@ -39,6 +39,17 @@ const Cart = () => {
     dispatch(removeFromCart(product.id));
   };
 
+  const handleCheckout = () => {
+    // isAuthenticated ? router.push("/cart/checkout") : router.push("/login");
+    if (!isAuthenticated) {
+      localStorage.setItem("isCheckoutClicked", true);
+      router.push("/login");
+      return;
+    }
+
+    router.push("/cart/checkout");
+  };
+
   return (
     <div className="p-5 md:px-10">
       {/* Breadcrumb */}
@@ -168,11 +179,7 @@ const Cart = () => {
               <span className="font-semibold">₦{getTotalPrice()}</span>
             </div>
             <button
-              onClick={() =>
-                isAuthenticated
-                  ? router.push("/cart/checkout")
-                  : router.push("/login")
-              }
+              onClick={handleCheckout}
               className="bg-primaryBrown dark:bg-secondaryBrown py-3 px-5 rounded-xl text-neutralLight w-full mt-5 hover:opacity-90"
             >
               Proceed to Checkout (₦{getTotalPrice()})

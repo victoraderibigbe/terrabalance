@@ -52,14 +52,12 @@ const Footer = () => {
         </div>
         <div>
           <h4>Product Categories</h4>
-          <div>
-            <ul>
-              {categories.map((cat, idx) => (
-                <li key={cat.title}>
-                  <Link href={cat.path}>{cat.title}</Link>
-                </li>
-              ))}
-            </ul>
+          <div className="grid grid-cols-2 gap-2 mt-2">
+            {categories.map((cat, idx) => (
+              <Link key={idx} href={cat.path}>
+                {cat.title}
+              </Link>
+            ))}
           </div>
         </div>
         <div>
