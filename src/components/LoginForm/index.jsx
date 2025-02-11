@@ -35,7 +35,7 @@ const LoginForm = () => {
         const isCheckoutClicked = localStorage.getItem("isCheckoutClicked");
 
         if (isCheckoutClicked) {
-          router.push("/cart/checkout");
+          router.push("/checkout");
           localStorage.setItem("isCheckoutClicked", false);
           return;
         }

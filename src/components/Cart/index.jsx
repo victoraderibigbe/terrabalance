@@ -40,14 +40,13 @@ const Cart = () => {
   };
 
   const handleCheckout = () => {
-    // isAuthenticated ? router.push("/cart/checkout") : router.push("/login");
     if (!isAuthenticated) {
       localStorage.setItem("isCheckoutClicked", true);
       router.push("/login");
       return;
     }
 
-    router.push("/cart/checkout");
+    router.push("/checkout");
   };
 
   return (
