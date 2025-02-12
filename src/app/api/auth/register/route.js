@@ -6,7 +6,17 @@ import connectDB from "@/lib/mongodb";
 
 export async function POST(req) {
   await connectDB();
-  const { firstName, lastName, email, password } = await req.json();
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+    deliveryAddresses = [],
+    paymentMethod = null,
+    paymentInfo = {},
+  } = await req.json();
+
+  console.log(deliveryAddresses);
 
   try {
     // Check if the user already exists
@@ -27,10 +37,17 @@ export async function POST(req) {
       lastName,
       email,
       password: hashedPassword,
+      deliveryAddresses,
+      paymentMethod,
+      paymentInfo,
     });
+
+    console.log("New user: ", newUser);
 
     // Save the user to the database
     const savedUser = await newUser.save();
+
+    console.log("Saved user: ", savedUser);
 
     // Generate a JWT token
     const token = jwt.sign({ id: savedUser._id }, process.env.JWT_SECRET_KEY, {
@@ -46,6 +63,9 @@ export async function POST(req) {
           firstName: savedUser.firstName,
           lastName: savedUser.lastName,
           email: savedUser.email,
+          deliveryAddresses: savedUser.deliveryAddresses,
+          paymentMethod: savedUser.paymentMethod,
+          paymentInfo: savedUser.paymentInfo,
         },
       },
       { status: 201 }

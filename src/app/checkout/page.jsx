@@ -1,15 +1,10 @@
+"use client";
+
 import ThemeToggle from "@/components/ThemeToggle";
+import withAuth from "@/components/withAuth";
 import Image from "next/image";
 import Link from "next/link";
 import { MdArrowBack, MdOutlineDiscount } from "react-icons/md";
-
-export const generateMetadata = () => {
-  return {
-    title: "Checkout - Terra Balance Enterprises",
-    description:
-      "Proceed to checkout to complete your purchase of farm products and services.",
-  };
-};
 
 const CheckoutPage = () => {
   return (
@@ -212,4 +207,4 @@ const CheckoutPage = () => {
   );
 };
 
-export default CheckoutPage;
+export default withAuth(CheckoutPage);

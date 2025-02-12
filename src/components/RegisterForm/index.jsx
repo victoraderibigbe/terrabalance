@@ -28,6 +28,20 @@ const RegisterForm = () => {
       }
 
       toast.success("Account created successfully");
+
+      if (localStorage["isCheckoutClicked"]) {
+        const isCheckoutClicked = localStorage.getItem("isCheckoutClicked");
+
+        if (isCheckoutClicked) {
+          router.push("/checkout");
+          localStorage.removeItem("isCheckoutClicked");
+          return;
+        }
+
+        localStorage.removeItem("isCheckoutClicked");
+        router.push("/");
+      }
+
       router.push("/");
     } catch (error) {
       console.log(error);

@@ -36,11 +36,11 @@ const LoginForm = () => {
 
         if (isCheckoutClicked) {
           router.push("/checkout");
-          localStorage.setItem("isCheckoutClicked", false);
+          localStorage.removeItem("isCheckoutClicked");
           return;
         }
 
-          localStorage.setItem("isCheckoutClicked", false);
+        localStorage.removeItem("isCheckoutClicked");
         router.push("/");
       }
 

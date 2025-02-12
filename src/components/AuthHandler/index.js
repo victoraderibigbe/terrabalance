@@ -10,12 +10,15 @@ const AuthHandler = ({ children }) => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
+    const user = localStorage.getItem("user");
+
+    if (token && user) {
       const decoded = jwtDecode(token);
       if (decoded.exp * 1000 > Date.now()) {
-        dispatch(setUser(decoded));
+        dispatch(setUser(JSON.parse(user)));
       } else {
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
       }
     }
   }, [dispatch]);

@@ -53,10 +53,6 @@ const Navbar = () => {
   const { user, isAuthenticated } = useSelector((state) => state.auth);
   const isDrawerOpen = useSelector((state) => state.drawer.isDrawerOpen);
 
-  useEffect(() => {
-    console.log(isDrawerOpen);
-  }, [isDrawerOpen]);
-
   const router = useRouter();
 
   return (
