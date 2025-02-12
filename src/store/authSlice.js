@@ -58,13 +58,15 @@ const initialState = {
   isAuthenticated: false,
 };
 
-// Rehydrate state from localStorage
-const persistedUser = localStorage.getItem("user");
-const persistedToken = localStorage.getItem("token");
+// Rehydrate state from localStorage (only in the browser)
+if (typeof window !== "undefined") {
+  const persistedUser = localStorage.getItem("user");
+  const persistedToken = localStorage.getItem("token");
 
-if (persistedUser && persistedToken) {
-  initialState.user = JSON.parse(persistedUser);
-  initialState.isAuthenticated = true;
+  if (persistedUser && persistedToken) {
+    initialState.user = JSON.parse(persistedUser);
+    initialState.isAuthenticated = true;
+  }
 }
 
 // Create the auth slice
@@ -75,13 +77,17 @@ const authSlice = createSlice({
     logout: (state) => {
       state.user = null;
       state.isAuthenticated = false;
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+      }
     },
     setUser: (state, action) => {
       state.user = action.payload;
       state.isAuthenticated = true;
-      localStorage.setItem("user", JSON.stringify(action.payload));
+      if (typeof window !== "undefined") {
+        localStorage.setItem("user", JSON.stringify(action.payload));
+      }
     },
   },
   extraReducers: (builder) => {
@@ -95,8 +101,10 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload.user;
         state.isAuthenticated = true;
-        localStorage.setItem("token", action.payload.token);
-        localStorage.setItem("user", JSON.stringify(action.payload.user));
+        if (typeof window !== "undefined") {
+          localStorage.setItem("token", action.payload.token);
+          localStorage.setItem("user", JSON.stringify(action.payload.user));
+        }
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
@@ -111,8 +119,10 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload.user;
         state.isAuthenticated = true;
-        localStorage.setItem("token", action.payload.token);
-        localStorage.setItem("user", JSON.stringify(action.payload.user));
+        if (typeof window !== "undefined") {
+          localStorage.setItem("token", action.payload.token);
+          localStorage.setItem("user", JSON.stringify(action.payload.user));
+        }
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;

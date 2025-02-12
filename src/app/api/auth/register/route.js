@@ -42,12 +42,8 @@ export async function POST(req) {
       paymentInfo,
     });
 
-    console.log("New user: ", newUser);
-
     // Save the user to the database
     const savedUser = await newUser.save();
-
-    console.log("Saved user: ", savedUser);
 
     // Generate a JWT token
     const token = jwt.sign({ id: savedUser._id }, process.env.JWT_SECRET_KEY, {
