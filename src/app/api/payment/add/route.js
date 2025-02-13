@@ -1,5 +1,5 @@
 import Payment from "@/models/Payment";
-import User from "@/models/User";
+import User from "@/models/Users";
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 
