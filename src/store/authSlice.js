@@ -53,6 +53,7 @@ export const loginUser = createAsyncThunk(
 // Define the initial state of the auth slice
 const initialState = {
   user: null,
+  id: null,
   loading: false,
   error: null,
   isAuthenticated: false,
@@ -62,9 +63,11 @@ const initialState = {
 if (typeof window !== "undefined") {
   const persistedUser = localStorage.getItem("user");
   const persistedToken = localStorage.getItem("token");
+  const persistedUserId = localStorage.getItem("userId");
 
-  if (persistedUser && persistedToken) {
+  if (persistedUser && persistedToken && persistedUserId) {
     initialState.user = JSON.parse(persistedUser);
+    initialState.id = persistedUserId;
     initialState.isAuthenticated = true;
   }
 }
@@ -76,17 +79,21 @@ const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.user = null;
+      state.id = null;
       state.isAuthenticated = false;
       if (typeof window !== "undefined") {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
+        localStorage.removeItem("userId");
       }
     },
     setUser: (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload.user;
+      state.id = action.payload.user._id;
       state.isAuthenticated = true;
       if (typeof window !== "undefined") {
-        localStorage.setItem("user", JSON.stringify(action.payload));
+        localStorage.setItem("user", JSON.stringify(action.payload.user));
+        localStorage.setItem("userId", action.payload.user.id);
       }
     },
   },
@@ -100,10 +107,12 @@ const authSlice = createSlice({
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload.user;
+        state.id = action.payload.user.id;
         state.isAuthenticated = true;
         if (typeof window !== "undefined") {
           localStorage.setItem("token", action.payload.token);
           localStorage.setItem("user", JSON.stringify(action.payload.user));
+          localStorage.setItem("userId", action.payload.user.id);
         }
       })
       .addCase(registerUser.rejected, (state, action) => {
@@ -118,10 +127,12 @@ const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload.user;
+        state.id = action.payload.user.id;
         state.isAuthenticated = true;
         if (typeof window !== "undefined") {
           localStorage.setItem("token", action.payload.token);
           localStorage.setItem("user", JSON.stringify(action.payload.user));
+          localStorage.setItem("userId", action.payload.user.id);
         }
       })
       .addCase(loginUser.rejected, (state, action) => {

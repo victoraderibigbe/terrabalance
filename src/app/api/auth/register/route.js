@@ -5,20 +5,10 @@ import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 
 export async function POST(req) {
-  await connectDB();
-  const {
-    firstName,
-    lastName,
-    email,
-    password,
-    deliveryAddresses = [],
-    paymentMethod = null,
-    paymentInfo = {},
-  } = await req.json();
-
-  console.log(deliveryAddresses);
-
   try {
+    await connectDB();
+    const { firstName, lastName, email, password } = await req.json();
+
     // Check if the user already exists
     const existingUser = await Users.findOne({ email });
     if (existingUser) {
@@ -37,9 +27,6 @@ export async function POST(req) {
       lastName,
       email,
       password: hashedPassword,
-      deliveryAddresses,
-      paymentMethod,
-      paymentInfo,
     });
 
     // Save the user to the database
@@ -59,9 +46,6 @@ export async function POST(req) {
           firstName: savedUser.firstName,
           lastName: savedUser.lastName,
           email: savedUser.email,
-          deliveryAddresses: savedUser.deliveryAddresses,
-          paymentMethod: savedUser.paymentMethod,
-          paymentInfo: savedUser.paymentInfo,
         },
       },
       { status: 201 }

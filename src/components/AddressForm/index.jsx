@@ -1,9 +1,11 @@
 "use client";
 
+import { addAddress } from "@/store/addressSlice";
 import { toggleAddressForm } from "@/store/drawerSlice";
 import { validateAddress } from "@/utils/validationSchema";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
 
 const initialValues = {
   country: "",
@@ -15,21 +17,23 @@ const initialValues = {
 
 const AddressForm = () => {
   const dispatch = useDispatch();
+  const userId = useSelector((state) => state.auth.user.id);
 
-  const handleSubmit = (values) => {
-    let addresses = [];
+  const handleSubmit = async (values) => {
+    try {
+      const add = await dispatch(addAddress({ userId, addressData: values }));
 
-    if (localStorage["addresses"]) {
-      addresses = JSON.parse(localStorage["addresses"]);
-      addresses.push(values);
-      localStorage.setItem("addresses", JSON.stringify(addresses));
+      if (!addAddress.fulfilled.match(add)) {
+        toast.error(add.payload || "Failed to add address");
+        return;
+      }
+
+      toast.success("Address added successfully");
       dispatch(toggleAddressForm());
-      return;
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to add address");
     }
-
-    addresses.push(values);
-    localStorage.setItem("addresses", JSON.stringify(addresses));
-    dispatch(toggleAddressForm());
   };
 
   return (
