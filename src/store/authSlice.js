@@ -18,7 +18,9 @@ export const registerUser = createAsyncThunk(
         return rejectWithValue(error.message);
       }
 
-      return await response.json();
+      const data = await response.json();
+      console.log("Register response:", data);
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -28,14 +30,14 @@ export const registerUser = createAsyncThunk(
 // Async thunk for logging in a user
 export const loginUser = createAsyncThunk(
   "user/loginUser",
-  async (FormData, { rejectWithValue }) => {
+  async (formData, { rejectWithValue }) => {
     try {
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(FormData),
+        body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
@@ -43,7 +45,9 @@ export const loginUser = createAsyncThunk(
         return rejectWithValue(error.message);
       }
 
-      return await response.json();
+      const data = await response.json();
+      console.log("Login response:", data);
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -53,7 +57,7 @@ export const loginUser = createAsyncThunk(
 // Define the initial state of the auth slice
 const initialState = {
   user: null,
-  id: null,
+  userId: null,
   loading: false,
   error: null,
   isAuthenticated: false,
@@ -67,7 +71,7 @@ if (typeof window !== "undefined") {
 
   if (persistedUser && persistedToken && persistedUserId) {
     initialState.user = JSON.parse(persistedUser);
-    initialState.id = persistedUserId;
+    initialState.userId = persistedUserId;
     initialState.isAuthenticated = true;
   }
 }
@@ -79,7 +83,7 @@ const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.user = null;
-      state.id = null;
+      state.userId = null;
       state.isAuthenticated = false;
       if (typeof window !== "undefined") {
         localStorage.removeItem("token");
@@ -88,12 +92,19 @@ const authSlice = createSlice({
       }
     },
     setUser: (state, action) => {
-      state.user = action.payload.user;
-      state.id = action.payload.user._id;
-      state.isAuthenticated = true;
-      if (typeof window !== "undefined") {
-        localStorage.setItem("user", JSON.stringify(action.payload.user));
-        localStorage.setItem("userId", action.payload.user.id);
+      const { user } = action.payload || {};
+      
+      if (user !== undefined && user.id) {
+        console.log("From authSlice setUser:", action.payload.user);
+        state.user = user;
+        state.userId = user.id;
+        state.isAuthenticated = true;
+        if (typeof window !== "undefined") {
+          localStorage.setItem("user", JSON.stringify(user));
+          localStorage.setItem("userId", user.id);
+        }
+      } else {
+        console.error("Invalid user object", user);
       }
     },
   },
@@ -105,14 +116,22 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(registerUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload.user;
-        state.id = action.payload.user.id;
-        state.isAuthenticated = true;
-        if (typeof window !== "undefined") {
-          localStorage.setItem("token", action.payload.token);
-          localStorage.setItem("user", JSON.stringify(action.payload.user));
-          localStorage.setItem("userId", action.payload.user.id);
+        const { user, token } = action.payload || {};
+        console.log("Register fulfilled:", action.payload);
+        if (user && user.id) {
+          state.loading = false;
+          state.user = user;
+          state.userId = user.id;
+          state.isAuthenticated = true;
+          if (typeof window !== "undefined") {
+            localStorage.setItem("token", token);
+            localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("userId", user.id);
+          }
+        } else {
+          state.loading = false;
+          state.error = "Invalid user data received";
+          console.error("Invalid user data", action.payload);
         }
       })
       .addCase(registerUser.rejected, (state, action) => {
@@ -125,14 +144,22 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload.user;
-        state.id = action.payload.user.id;
-        state.isAuthenticated = true;
-        if (typeof window !== "undefined") {
-          localStorage.setItem("token", action.payload.token);
-          localStorage.setItem("user", JSON.stringify(action.payload.user));
-          localStorage.setItem("userId", action.payload.user.id);
+        const { user, token } = action.payload || {};
+        console.log("Login fulfilled:", action.payload);
+        if (user && user.id) {
+          state.loading = false;
+          state.user = user;
+          state.userId = user.id;
+          state.isAuthenticated = true;
+          if (typeof window !== "undefined") {
+            localStorage.setItem("token", token);
+            localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("userId", user.id);
+          }
+        } else {
+          state.loading = false;
+          state.error = "Invalid user data received";
+          console.error("Invalid user data", action.payload);
         }
       })
       .addCase(loginUser.rejected, (state, action) => {

@@ -1,7 +1,7 @@
 "use client";
 
 import { toggleAddressForm, toggleDrawer } from "@/store/drawerSlice";
-import { Drawer } from "flowbite-react";
+import { Drawer, Spinner } from "flowbite-react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   MdArrowBack,
@@ -12,8 +12,14 @@ import {
 import { FaPlus } from "react-icons/fa";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import AddressForm from "../AddressForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import {
+  deleteAddress,
+  fetchAddresses,
+  setPreferredAddress,
+} from "@/store/addressSlice";
+import toast from "react-hot-toast";
 
 const MyDrawer = () => {
   const dispatch = useDispatch();
@@ -22,6 +28,7 @@ const MyDrawer = () => {
   );
   const [isDeliveryClick, setIsDeliveryClick] = useState(true);
   const [isPickupClick, setIsPickupClick] = useState(false);
+  const [selectedAddress, setSelectedAddress] = useState(null);
 
   const handleDeliveryClick = () => {
     setIsPickupClick(false);
@@ -35,11 +42,43 @@ const MyDrawer = () => {
 
   const handleClose = () => dispatch(toggleDrawer());
 
-  let addresses = [];
+  const { addresses, loading } = useSelector((state) => state.address);
+  const userId = useSelector((state) => state.auth.userId);
 
-  if (localStorage["addresses"]) {
-    addresses = JSON.parse(localStorage["addresses"]);
-  }
+  useEffect(() => {
+    if (userId) {
+      dispatch(fetchAddresses(userId));
+    }
+  }, [userId, dispatch]);
+
+  useEffect(() => {
+    if (addresses.length > 0) {
+      const preferredAddress =
+        addresses.find((address) => address.isPreferred) || addresses[0];
+      setSelectedAddress(preferredAddress._id);
+    }
+  }, [addresses]);
+
+  const handleDeleteAddress = async (addressId) => {
+    try {
+      const remove = await dispatch(deleteAddress(addressId));
+
+      if (!deleteAddress.fulfilled.match(remove)) {
+        toast.error(remove.payload || "Failed to delete address");
+        return;
+      }
+
+      toast.success("Address deleted successfully");
+      dispatch(fetchAddresses(userId));
+    } catch (error) {
+      toast.error("Failed to delete address");
+    }
+  };
+
+  const handleAddressChange = async (addressId) => {
+    setSelectedAddress(addressId);
+    await dispatch(setPreferredAddress({ addressId, userId }));
+  };
 
   return (
     <>
@@ -54,6 +93,7 @@ const MyDrawer = () => {
           titleIcon={HiOutlineLocationMarker}
         />
         <Drawer.Items>
+          {/* Delivery method buttons */}
           <div className="flex items-center justify-between gap-2">
             <button
               onClick={handleDeliveryClick}
@@ -79,30 +119,63 @@ const MyDrawer = () => {
             </button>
           </div>
 
+          {/* Home Delivery option */}
           {isDeliveryClick && (
             <div>
               {!isAddressFormOpen && (
                 <div className="my-5">
-                  {addresses.map((address, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center justify-between gap-2 text-sm my-5"
-                    >
-                      <input
-                        type="radio"
-                        name="preferredAddress"
-                        className="cursor-pointer"
-                      />
-                      <label htmlFor="preferredAddress" className="flex-1">
-                        {address.street}, {address.city}, {address.state},{" "}
-                        {address.country}, {address.zipCode},
-                      </label>
-                      <MdDelete size={20} className="cursor-pointer" />
+                  {loading ? (
+                    <div className="flex items-center justify-center gap-2">
+                      <Spinner color="success" /> Loading addresses...
                     </div>
-                  ))}
+                  ) : addresses.length === 0 ? (
+                    <div>
+                      <div>No address found</div>
+                      <button
+                        className="flex items-center gap-2 text-red-foreground mt-3"
+                        onClick={() => dispatch(toggleAddressForm())}
+                      >
+                        Add delivery address <FaPlus />
+                      </button>
+                    </div>
+                  ) : (
+                    <div>
+                      {/* Display all addresses */}
+                      {addresses.map((address, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-center justify-between gap-2 text-sm my-5"
+                        >
+                          <input
+                            type="radio"
+                            name="preferredAddress"
+                            checked={selectedAddress === address._id}
+                            onChange={() => handleAddressChange(address._id)}
+                            className="cursor-pointer"
+                          />
+                          <label htmlFor="preferredAddress" className="flex-1">
+                            {address.street}, {address.city}, {address.state},{" "}
+                            {address.country}, {address.zipCode}
+                          </label>
+                          <MdDelete
+                            onClick={() => handleDeleteAddress(address._id)}
+                            size={20}
+                            className="cursor-pointer"
+                          />
+                        </div>
+                      ))}
+                      <button
+                        className="flex items-center gap-2 text-red-foreground mt-3"
+                        onClick={() => dispatch(toggleAddressForm())}
+                      >
+                        Add delivery address <FaPlus />
+                      </button>
+                    </div>
+                  )}
                 </div>
               )}
 
+              {/* Address form */}
               {isAddressFormOpen && (
                 <div className="my-5">
                   <span
@@ -115,18 +188,10 @@ const MyDrawer = () => {
                   <AddressForm />
                 </div>
               )}
-
-              {!isAddressFormOpen && (
-                <button
-                  className="flex items-center gap-2 text-red-foreground mt-3"
-                  onClick={() => dispatch(toggleAddressForm())}
-                >
-                  Add delivery address <FaPlus />
-                </button>
-              )}
             </div>
           )}
 
+          {/* Pickup option */}
           {isPickupClick && (
             <div className="mt-5">
               <div className="mb-3">

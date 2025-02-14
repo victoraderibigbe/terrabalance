@@ -18,6 +18,7 @@ const initialValues = {
 const AddressForm = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user.id);
+  const { loading } = useSelector((state) => state.address);
 
   const handleSubmit = async (values) => {
     try {
@@ -159,8 +160,8 @@ const AddressForm = () => {
             />
           </div>
 
-          <button type="submit" className="form-btn">
-            Add Address
+          <button type="submit" className="form-btn" disabled={loading}>
+            {loading ? "Adding..." : "Add Address"}
           </button>
         </Form>
       )}

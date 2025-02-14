@@ -8,6 +8,10 @@ const AddressSchema = new mongoose.Schema(
     city: { type: String, required: true },
     street: { type: String, required: true },
     zipCode: { type: String, required: true },
+    isPreferred: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

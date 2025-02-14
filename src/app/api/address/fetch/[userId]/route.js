@@ -3,12 +3,14 @@ import connectDB from "@/lib/mongodb";
 import { NextResponse } from "next/server";
 
 export async function GET(req, { params }) {
-  const { userId } = params;
+  const { userId } = await params;
   await connectDB();
 
   try {
-    // Fetch addresses for the user
-    const addresses = await Address.find({ user: userId });
+    // Fetch addresses for the user, sorted by isPreferred
+    const addresses = await Address.find({ user: userId }).sort({
+      isPreferred: -1,
+    });
 
     // Return the addresses
     return NextResponse.json(

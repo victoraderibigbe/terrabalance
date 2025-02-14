@@ -30,7 +30,7 @@ export const fetchAddresses = createAsyncThunk(
   "address/fetchAddresses",
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await fetch(`/api/address/${userId}`, {
+      const response = await fetch(`/api/address/fetch/${userId}`, {
         method: "GET",
       });
 
@@ -53,6 +53,31 @@ export const deleteAddress = createAsyncThunk(
     try {
       const response = await fetch(`/api/address/${addressId}/delete`, {
         method: "DELETE",
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        return rejectWithValue(error.message);
+      }
+
+      return addressId;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+// Async thunk for setting a preferred address
+export const setPreferredAddress = createAsyncThunk(
+  "address/setPreferredAddress",
+  async ({ addressId, userId }, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`/api/address/${addressId}/setPreferred`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId }),
       });
 
       if (!response.ok) {
@@ -121,6 +146,23 @@ const addressSlice = createSlice({
         );
       })
       .addCase(deleteAddress.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      // Set Preferred Address
+      .addCase(setPreferredAddress.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(setPreferredAddress.fulfilled, (state, action) => {
+        state.loading = false;
+        state.addresses = state.addresses.map((address) =>
+          address._id === action.payload
+            ? { ...address, isPreferred: true }
+            : { ...address, isPreferred: false }
+        );
+      })
+      .addCase(setPreferredAddress.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
