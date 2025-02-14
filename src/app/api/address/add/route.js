@@ -5,7 +5,8 @@ import connectDB from "@/lib/mongodb";
 
 export async function POST(req) {
   await connectDB();
-  const { userId, country, state, city, street, zipCode } = await req.json();
+  const { userId, country, state, city, street, zipCode, deliveryOption } =
+    await req.json();
 
   try {
     // Check if the user exists
@@ -22,6 +23,7 @@ export async function POST(req) {
       city,
       street,
       zipCode,
+      deliveryOption,
     });
 
     // Save the address to the database

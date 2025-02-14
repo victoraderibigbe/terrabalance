@@ -94,8 +94,11 @@ export const setPreferredAddress = createAsyncThunk(
 
 const initialState = {
   addresses: [],
+  isSelected: null,
   loading: false,
   error: null,
+  isDeliveryClick: true,
+  isPickupClick: false,
 };
 
 const addressSlice = createSlice({
@@ -104,6 +107,15 @@ const addressSlice = createSlice({
   reducers: {
     clearAddresses: (state) => {
       state.addresses = [];
+      state.isSelected = null;
+    },
+    setDeliveryClick: (state) => {
+      state.isDeliveryClick = true;
+      state.isPickupClick = false;
+    },
+    setPickupClick: (state) => {
+      state.isDeliveryClick = false;
+      state.isPickupClick = true;
     },
   },
   extraReducers: (builder) => {
@@ -129,6 +141,10 @@ const addressSlice = createSlice({
       .addCase(fetchAddresses.fulfilled, (state, action) => {
         state.loading = false;
         state.addresses = action.payload.addresses;
+        const preferredAddress =
+          state.addresses.find((address) => address.isPreferred) ||
+          state.addresses[0];
+        state.isSelected = preferredAddress ? preferredAddress._id : null;
       })
       .addCase(fetchAddresses.rejected, (state, action) => {
         state.loading = false;
@@ -144,6 +160,10 @@ const addressSlice = createSlice({
         state.addresses = state.addresses.filter(
           (address) => address._id !== action.payload
         );
+        if (state.isSelected === action.payload) {
+          state.isSelected =
+            state.addresses.length > 0 ? state.addresses[0]._id : null;
+        }
       })
       .addCase(deleteAddress.rejected, (state, action) => {
         state.loading = false;
@@ -161,6 +181,7 @@ const addressSlice = createSlice({
             ? { ...address, isPreferred: true }
             : { ...address, isPreferred: false }
         );
+        state.isSelected = action.payload;
       })
       .addCase(setPreferredAddress.rejected, (state, action) => {
         state.loading = false;
@@ -170,5 +191,6 @@ const addressSlice = createSlice({
 });
 
 // Export actions and reducer
-export const { clearAddresses } = addressSlice.actions;
+export const { clearAddresses, setDeliveryClick, setPickupClick } =
+  addressSlice.actions;
 export default addressSlice.reducer;

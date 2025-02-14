@@ -1,12 +1,41 @@
 "use client";
 
+import ChangeAddressModal from "@/components/ChangeAddressModal";
 import ThemeToggle from "@/components/ThemeToggle";
 import withAuth from "@/components/withAuth";
+import { fetchAddresses } from "@/store/addressSlice";
+import { toggleAddressModal } from "@/store/modalSlice";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { MdArrowBack, MdOutlineDiscount } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
 
 const CheckoutPage = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const { user, userId } = useSelector((state) => state.auth);
+  const { addresses, isSelected } = useSelector((state) => state.address);
+  const { isAddressModalOpen } = useSelector((state) => state.modal);
+  const selectedAddress = addresses.find(
+    (address) => address._id === isSelected
+  );
+
+  const getTotalPrice = () => {
+    return cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+  };
+
+  useEffect(() => {
+    if (userId) {
+      dispatch(fetchAddresses(userId));
+    }
+  }, [userId, dispatch]);
+
   return (
     <div>
       <nav className="sticky top-0">
@@ -60,16 +89,16 @@ const CheckoutPage = () => {
           </div>
           <div className="border-b">
             <div className="flex items-center justify-between">
-              <p>Item's total (1)</p>
-              <p>₦ 2,500</p>
+              <p>Item's total ({cartItems.length})</p>
+              <p>₦{getTotalPrice()}</p>
             </div>
             <div className="flex items-center justify-between">
               <p>Delivery Fees</p>
-              <p>₦ 800</p>
+              <p>₦800</p>
             </div>
             <div className="flex items-center justify-between">
               <p className="font-semibold">Total</p>
-              <p className="font-semibold">₦ 3,300</p>
+              <p className="font-semibold">₦{getTotalPrice() + 800}</p>
             </div>
           </div>
           <div className="flex item-center gap-2 py-3">
@@ -108,12 +137,22 @@ const CheckoutPage = () => {
               <h6 className="text-primaryGreen dark:text-secondaryGreen font-bold">
                 Delivery Address
               </h6>
-              <button>Change</button>
+              <button onClick={() => dispatch(toggleAddressModal())}>
+                Change
+              </button>
             </div>
-            <div>
-              <p className="my-0">John Doe</p>
-              <small>Adenike Area, Ogbomoso, Oyo, Nigeria.</small>
-            </div>
+            {user && selectedAddress && (
+              <div>
+                <p className="my-0">
+                  {user?.firstName} {user?.lastName}
+                </p>
+                <small>
+                  {selectedAddress?.street}, {selectedAddress?.city},{" "}
+                  {selectedAddress?.state}, {selectedAddress?.country},{" "}
+                  {selectedAddress?.zipCode}
+                </small>
+              </div>
+            )}
           </div>
           <div className="bg-neutralLight dark:bg-darkerGray lg:rounded-xl px-4 py-2 lg:p-5 flex flex-col gap-3">
             <div className="border-b pb-1 mb-2 flex items-center justify-between">
@@ -124,22 +163,35 @@ const CheckoutPage = () => {
             </div>
             <div>
               <p className="my-0 font-semibold">Home Delivery</p>
-              <small>Delivery between 19 February and 21 February.</small>
+              <small>Delivery in less than 14 days</small>
             </div>
             <div>
               <p className="my-0 font-semibold">Shipment</p>
-              <div className="border py-2 rounded-lg flex items-center gap-2 my-2">
-                <div></div>
-                <div>
-                  <p className="my-0">
-                    AM And PM SPF 30 Facial Moisturizing Lotion, 3oz Each
-                  </p>
-                  <small>QTY: 1</small>
-                </div>
+              <div className="border p-2 rounded-lg max-h-56 overflow-auto">
+                {cartItems?.map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-2 my-2">
+                    <div>
+                      <Image
+                        src={item?.image}
+                        alt={item?.title}
+                        width={100}
+                        height={100}
+                        className="rounded-lg"
+                      />
+                    </div>
+                    <div>
+                      <p className="my-0">{item?.title}</p>
+                      <small>QTY: {item?.quantity}</small>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
             <div className="flex items-center justify-center">
-              <button className="bg-primaryBrown dark:bg-secondaryBrown text-neutralLight px-4 py-2 rounded-lg">
+              <button
+                onClick={() => router.push("/cart")}
+                className="bg-primaryBrown dark:bg-secondaryBrown text-neutralLight px-4 py-2 rounded-lg"
+              >
                 Modify Cart
               </button>
             </div>
@@ -162,16 +214,16 @@ const CheckoutPage = () => {
             </div>
             <div className="border-b">
               <div className="flex items-center justify-between">
-                <p>Item's total (1)</p>
-                <p>₦ 2,500</p>
+                <p>Item's total ({cartItems.length})</p>
+                <p>₦{getTotalPrice()}</p>
               </div>
               <div className="flex items-center justify-between">
                 <p>Delivery Fees</p>
-                <p>₦ 800</p>
+                <p>₦800</p>
               </div>
               <div className="flex items-center justify-between">
                 <p className="font-semibold">Total</p>
-                <p className="font-semibold">₦ 3,300</p>
+                <p className="font-semibold">₦{getTotalPrice() + 800}</p>
               </div>
             </div>
             <div className="flex item-center flex-wrap gap-2 py-3 border-b">
@@ -191,7 +243,7 @@ const CheckoutPage = () => {
 
             <div className="py-3">
               <button className="bg-primaryBrown dark:bg-secondaryBrown w-full p-3 rounded-lg text-neutralLight">
-                Confirm Order
+                Confirm Order (₦{getTotalPrice() + 800})
               </button>
             </div>
           </div>
@@ -200,9 +252,11 @@ const CheckoutPage = () => {
 
       <div className="sticky bottom-0 lg:hidden">
         <button className="bg-primaryBrown dark:bg-secondaryBrown w-full p-5 rounded-lg text-neutralLight">
-          Confirm Order
+          Confirm Order (₦{getTotalPrice() + 800})
         </button>
       </div>
+
+      {isAddressModalOpen && <ChangeAddressModal />}
     </div>
   );
 };

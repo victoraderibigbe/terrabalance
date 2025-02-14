@@ -5,6 +5,7 @@ import cartReducer from "./cartSlice";
 import authReducer from "./authSlice";
 import drawerReducer from "./drawerSlice";
 import addressReducer from "./addressSlice";
+import modalReducer from "./modalSlice";
 import { saveCartToLocalStorage } from "./cartMiddleware";
 
 const store = configureStore({
@@ -15,6 +16,7 @@ const store = configureStore({
     auth: authReducer,
     drawer: drawerReducer,
     address: addressReducer,
+    modal: modalReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(saveCartToLocalStorage),

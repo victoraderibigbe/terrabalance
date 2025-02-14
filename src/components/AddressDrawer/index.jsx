@@ -12,11 +12,13 @@ import {
 import { FaPlus } from "react-icons/fa";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import AddressForm from "../AddressForm";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 import {
   deleteAddress,
   fetchAddresses,
+  setDeliveryClick,
+  setPickupClick,
   setPreferredAddress,
 } from "@/store/addressSlice";
 import toast from "react-hot-toast";
@@ -26,23 +28,19 @@ const MyDrawer = () => {
   const { isDrawerOpen, isAddressFormOpen } = useSelector(
     (state) => state.drawer
   );
-  const [isDeliveryClick, setIsDeliveryClick] = useState(true);
-  const [isPickupClick, setIsPickupClick] = useState(false);
-  const [selectedAddress, setSelectedAddress] = useState(null);
+  const { addresses, loading, isSelected, isDeliveryClick, isPickupClick } =
+    useSelector((state) => state.address);
 
   const handleDeliveryClick = () => {
-    setIsPickupClick(false);
-    setIsDeliveryClick(true);
+    dispatch(setDeliveryClick());
   };
 
   const handlePickupClick = () => {
-    setIsDeliveryClick(false);
-    setIsPickupClick(true);
+    dispatch(setPickupClick());
   };
 
   const handleClose = () => dispatch(toggleDrawer());
 
-  const { addresses, loading } = useSelector((state) => state.address);
   const userId = useSelector((state) => state.auth.userId);
 
   useEffect(() => {
@@ -50,14 +48,6 @@ const MyDrawer = () => {
       dispatch(fetchAddresses(userId));
     }
   }, [userId, dispatch]);
-
-  useEffect(() => {
-    if (addresses.length > 0) {
-      const preferredAddress =
-        addresses.find((address) => address.isPreferred) || addresses[0];
-      setSelectedAddress(preferredAddress._id);
-    }
-  }, [addresses]);
 
   const handleDeleteAddress = async (addressId) => {
     try {
@@ -72,11 +62,11 @@ const MyDrawer = () => {
       dispatch(fetchAddresses(userId));
     } catch (error) {
       toast.error("Failed to delete address");
+      dispatch(fetchAddresses(userId));
     }
   };
 
   const handleAddressChange = async (addressId) => {
-    setSelectedAddress(addressId);
     await dispatch(setPreferredAddress({ addressId, userId }));
   };
 
@@ -149,7 +139,7 @@ const MyDrawer = () => {
                           <input
                             type="radio"
                             name="preferredAddress"
-                            checked={selectedAddress === address._id}
+                            checked={isSelected === address._id}
                             onChange={() => handleAddressChange(address._id)}
                             className="cursor-pointer"
                           />

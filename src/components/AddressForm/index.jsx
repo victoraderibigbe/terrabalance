@@ -1,6 +1,6 @@
 "use client";
 
-import { addAddress } from "@/store/addressSlice";
+import { addAddress, fetchAddresses } from "@/store/addressSlice";
 import { toggleAddressForm } from "@/store/drawerSlice";
 import { validateAddress } from "@/utils/validationSchema";
 import { ErrorMessage, Field, Form, Formik } from "formik";
@@ -30,6 +30,7 @@ const AddressForm = () => {
       }
 
       toast.success("Address added successfully");
+      await dispatch(fetchAddresses(userId));
       dispatch(toggleAddressForm());
     } catch (error) {
       console.log(error);

@@ -12,6 +12,11 @@ const AddressSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    deliveryOption: {
+      type: String,
+      enum: ["delivery", "pickup"],
+      default: "delivery",
+    },
   },
   { timestamps: true }
 );
