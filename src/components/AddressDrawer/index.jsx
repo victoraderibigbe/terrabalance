@@ -23,7 +23,7 @@ import {
 } from "@/store/addressSlice";
 import toast from "react-hot-toast";
 
-const MyDrawer = () => {
+const AddressDrawer = () => {
   const dispatch = useDispatch();
   const { isDrawerOpen, isAddressFormOpen } = useSelector(
     (state) => state.drawer
@@ -205,4 +205,4 @@ const MyDrawer = () => {
   );
 };
 
-export default MyDrawer;
+export default AddressDrawer;

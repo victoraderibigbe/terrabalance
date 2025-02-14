@@ -1,13 +1,35 @@
 "use client";
 
+import {
+  fetchAddresses,
+  setDeliveryClick,
+  setPickupClick,
+} from "@/store/addressSlice";
 import { toggleAddressModal } from "@/store/modalSlice";
 import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const ChangeAddressModal = () => {
   const dispatch = useDispatch();
   const { isAddressModalOpen } = useSelector((state) => state.modal);
+  const { addresses, loading, isSelected, isDeliveryClick, isPickupClick } =
+    useSelector((state) => state.address);
+  const userId = useSelector((state) => state.auth.userId);
+
+  const handleDeliveryClick = () => {
+    dispatch(setDeliveryClick());
+  };
+
+  const handlePickupClick = () => {
+    dispatch(setPickupClick());
+  };
+
+  useEffect(() => {
+    if (userId) {
+      dispatch(fetchAddresses(userId));
+    }
+  }, [userId, dispatch]);
 
   const [email, setEmail] = useState("");
 

@@ -41,6 +41,8 @@ export const fetchAddresses = createAsyncThunk(
 
       return await response.json();
     } catch (error) {
+      console.log(error);
+      
       return rejectWithValue(error.message);
     }
   }

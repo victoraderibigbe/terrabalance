@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function PATCH(req, { params }) {
   await connectDB();
-  const { addressId } = params;
+  const { addressId } = await params;
   const { userId } = await req.json();
 
   try {

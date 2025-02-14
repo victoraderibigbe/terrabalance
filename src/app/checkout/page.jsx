@@ -1,24 +1,23 @@
 "use client";
 
-import ChangeAddressModal from "@/components/ChangeAddressModal";
+import AddressDrawer from "@/components/AddressDrawer";
 import ThemeToggle from "@/components/ThemeToggle";
 import withAuth from "@/components/withAuth";
 import { fetchAddresses } from "@/store/addressSlice";
-import { toggleAddressModal } from "@/store/modalSlice";
+import { toggleDrawer } from "@/store/drawerSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { MdArrowBack, MdOutlineDiscount } from "react-icons/md";
+import { MdAdd, MdArrowBack, MdOutlineDiscount } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-
 const CheckoutPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const cartItems = useSelector((state) => state.cart.cartItems);
   const { user, userId } = useSelector((state) => state.auth);
   const { addresses, isSelected } = useSelector((state) => state.address);
-  const { isAddressModalOpen } = useSelector((state) => state.modal);
+  const isDrawerOpen = useSelector((state) => state.drawer.isDrawerOpen);
   const selectedAddress = addresses.find(
     (address) => address._id === isSelected
   );
@@ -137,11 +136,9 @@ const CheckoutPage = () => {
               <h6 className="text-primaryGreen dark:text-secondaryGreen font-bold">
                 Delivery Address
               </h6>
-              <button onClick={() => dispatch(toggleAddressModal())}>
-                Change
-              </button>
+              <button onClick={() => dispatch(toggleDrawer())}>Change</button>
             </div>
-            {user && selectedAddress && (
+            {user && selectedAddress ? (
               <div>
                 <p className="my-0">
                   {user?.firstName} {user?.lastName}
@@ -151,6 +148,16 @@ const CheckoutPage = () => {
                   {selectedAddress?.state}, {selectedAddress?.country},{" "}
                   {selectedAddress?.zipCode}
                 </small>
+              </div>
+            ) : (
+              <div>
+                <p>No address found</p>
+                <button
+                  onClick={() => dispatch(toggleDrawer())}
+                  className="flex items-center gap-1"
+                >
+                  Click to add delivery address <MdAdd />
+                </button>
               </div>
             )}
           </div>
@@ -256,7 +263,7 @@ const CheckoutPage = () => {
         </button>
       </div>
 
-      {isAddressModalOpen && <ChangeAddressModal />}
+      {isDrawerOpen && <AddressDrawer />}
     </div>
   );
 };
